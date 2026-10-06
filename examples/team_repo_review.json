@@ -1,0 +1,137 @@
+{
+  "reviewed_at_utc": "2026-10-06T11:29:53.697760+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "scope": "cloned main snapshots; source inspection and existing unit tests",
+  "repositories": [
+    {
+      "repository": "Game-engine",
+      "url": "https://github.com/Gachon-Murder-Mystery/Game-engine.git",
+      "branch": "main",
+      "commit": "dca35b989249bf1fc7e52ca404805b73e0a52648",
+      "tracked_worktree_clean": true,
+      "baseline_comparison": [
+        {
+          "path": "engine.py",
+          "sha256": "6141f014d91c6fe6e54118b7f0c12c68ff983244acecb8b324b9ed92b24eea26",
+          "demo_sha256": "c5635b37cd0f19cbf145379915d73840253720e4d70c21e20a35882f888670d3",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "app.py",
+          "sha256": "fd5f95dc31ff51401f79b2cf1052478a35cc770ae7e2a2c9fc12f17078289a68",
+          "demo_sha256": "af91ed6ed6a21a32403a50d08fe3e49413629e18de6a681f4c22bb9006b81949",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "llm.py",
+          "sha256": "fe712609b0bbb839f8128ee7966c57f18164cc56d84c907993964595f45a5617",
+          "demo_sha256": "de4f7c8c05300c083018b09c34af7e7f66c095942e21ab38a8ceab85258d95b7",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "test_game.py",
+          "sha256": "f073746f0f89a26c4b3a3a16bb1979c41f786d392ae94302f92ebfbcb5c6b390",
+          "demo_sha256": "c3240e5a81ed16ce8c7c47754339517ba6596d33baf222b9b37b4158443d096a",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "README.md",
+          "sha256": "9f38a087974cc0909a4611633aa04ece246eef7ec46edd7a6fc6eb86cdea47f8",
+          "demo_sha256": "ef149b4e34f415df92aa7eccc2cb60afd261d179332d69255a0d05b5b824a347",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "index.html",
+          "sha256": "9ab3d802641cd387b2c53c40b416c12dbc17cc56cbc2a03785c43512faba2ce8",
+          "demo_sha256": "b73af90f3be906901bf52a666fef0e38d7da10c9f14320493ec67afbe89c11cc",
+          "text_equal_after_newline_normalization": true
+        }
+      ],
+      "tests": {
+        "run": 14,
+        "passed": 13,
+        "failures": 0,
+        "errors": 1,
+        "error_test": "test_persistence_roundtrip",
+        "error_stage": "TemporaryDirectory cleanup",
+        "error": "WinError 32, SQLite database file still in use",
+        "log": ".repo_review_work/engine_tests.txt"
+      },
+      "persistence_probe": {
+        "repository": "Game-engine",
+        "roundtrip_equal": true,
+        "tracked_connections_created": 3,
+        "connections_usable_after_context_exit": 3,
+        "note": "Diagnostic instrumentation retains references; confirms transaction context does not explicitly close connections."
+      }
+    },
+    {
+      "repository": "Agent_Reasoning",
+      "url": "https://github.com/Gachon-Murder-Mystery/Agent_Reasoning.git",
+      "branch": "main",
+      "commit": "24eeeb1e6154de3d1a9cd3d891f3479112a9d2c1",
+      "tracked_worktree_clean": true,
+      "baseline_comparison": [
+        {
+          "path": "engine.py",
+          "sha256": "6141f014d91c6fe6e54118b7f0c12c68ff983244acecb8b324b9ed92b24eea26",
+          "demo_sha256": "c5635b37cd0f19cbf145379915d73840253720e4d70c21e20a35882f888670d3",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "app.py",
+          "sha256": "fd5f95dc31ff51401f79b2cf1052478a35cc770ae7e2a2c9fc12f17078289a68",
+          "demo_sha256": "af91ed6ed6a21a32403a50d08fe3e49413629e18de6a681f4c22bb9006b81949",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "llm.py",
+          "sha256": "fe712609b0bbb839f8128ee7966c57f18164cc56d84c907993964595f45a5617",
+          "demo_sha256": "de4f7c8c05300c083018b09c34af7e7f66c095942e21ab38a8ceab85258d95b7",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "test_game.py",
+          "sha256": "f073746f0f89a26c4b3a3a16bb1979c41f786d392ae94302f92ebfbcb5c6b390",
+          "demo_sha256": "c3240e5a81ed16ce8c7c47754339517ba6596d33baf222b9b37b4158443d096a",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "README.md",
+          "sha256": "9f38a087974cc0909a4611633aa04ece246eef7ec46edd7a6fc6eb86cdea47f8",
+          "demo_sha256": "ef149b4e34f415df92aa7eccc2cb60afd261d179332d69255a0d05b5b824a347",
+          "text_equal_after_newline_normalization": true
+        },
+        {
+          "path": "index.html",
+          "sha256": "9ab3d802641cd387b2c53c40b416c12dbc17cc56cbc2a03785c43512faba2ce8",
+          "demo_sha256": "b73af90f3be906901bf52a666fef0e38d7da10c9f14320493ec67afbe89c11cc",
+          "text_equal_after_newline_normalization": true
+        }
+      ],
+      "tests": {
+        "run": 14,
+        "passed": 13,
+        "failures": 0,
+        "errors": 1,
+        "error_test": "test_persistence_roundtrip",
+        "error_stage": "TemporaryDirectory cleanup",
+        "error": "WinError 32, SQLite database file still in use",
+        "log": ".repo_review_work/agent_tests.txt"
+      },
+      "persistence_probe": {
+        "repository": "Agent_Reasoning",
+        "roundtrip_equal": true,
+        "tracked_connections_created": 3,
+        "connections_usable_after_context_exit": 3,
+        "note": "Diagnostic instrumentation retains references; confirms transaction context does not explicitly close connections."
+      }
+    }
+  ],
+  "gm_contract_version": "gm-provisional-v0.1",
+  "actual_ABC_integration": "not_performed",
+  "live_llm_calls": "not_performed",
+  "team_repository_source_edits": false,
+  "remote_mutations": false
+}

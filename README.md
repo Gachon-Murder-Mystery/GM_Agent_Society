@@ -37,6 +37,7 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `demo.py` | 병렬 실행·장애 주입·입출력 예시 생성 |
 | `IO_CONTRACT.md` | 다음 연결 시 사용할 호출·메시지 계약 |
 | `SOURCE_RULES.md` | 룰북·데모·사용자 결정·임시 가정 구분 |
+| `TEAM_REPO_REVIEW_20261006.md` | A/B 저장소의 확인 커밋·기존 테스트·GM 연결 차이 |
 | `io_schema.json` | JSON 입출력의 형식 명세 |
 | `examples/` | 실제 모의 실행에서 생성한 입출력·결과 |
 
