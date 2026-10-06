@@ -1,0 +1,539 @@
+{
+  "schema_version": "gm-provisional-v0.1",
+  "provenance": {
+    "rulebook_en": "Murder_Mystery on_the_Ornate_Express_V1.0.pdf, pp. 1-2",
+    "rulebook_ko": "Murder_Mystery_on_the_Ornate_Express_KO.pdf, pp. 1-3",
+    "demo": "ornate_gm_demo/engine.py",
+    "author": "Hunka Dunka (2024)",
+    "license": "CC BY-SA 4.0",
+    "temporary": [
+      "named skill scopes",
+      "disclosure caps and job bonuses",
+      "job stat defaults",
+      "goal scores"
+    ]
+  },
+  "places": [
+    {
+      "id": 0,
+      "name": "라운지 칸",
+      "description": "벨벳 의자와 식어가는 차. 창문에 비친 승객들은 서로의 눈을 피합니다."
+    },
+    {
+      "id": 1,
+      "name": "침대 칸",
+      "description": "좁은 복도에 황동 객실 번호가 늘어서 있습니다. 문틈 사이로 불빛이 새어 나옵니다."
+    },
+    {
+      "id": 2,
+      "name": "식당 칸",
+      "description": "하얀 식탁보 위의 은식기가 열차의 진동에 부딪힙니다. 차장이 승객들을 모으고 있습니다."
+    },
+    {
+      "id": 3,
+      "name": "주방 칸",
+      "description": "희미한 증기와 버터 냄새. 도마와 조리 도구가 정돈되어 있습니다."
+    },
+    {
+      "id": 4,
+      "name": "수하물 칸",
+      "description": "가죽 트렁크들이 선반에 빼곡합니다. 바닥을 타고 열차의 진동이 전해집니다."
+    },
+    {
+      "id": 5,
+      "name": "금고 칸",
+      "description": "금속 문 옆에 보관 장부가 놓여 있습니다. 피해자의 재산도 이곳에 있다고 합니다."
+    },
+    {
+      "id": 6,
+      "name": "전망 칸",
+      "description": "커다란 유리창 너머로 황무지가 펼쳐집니다. 창가 의자 사이에 작은 테이블이 놓여 있습니다."
+    },
+    {
+      "id": 7,
+      "name": "기관실",
+      "description": "피스톤의 굉음 때문에 목소리를 높여야 합니다. 계기판의 바늘이 흔들립니다."
+    }
+  ],
+  "suspects": [
+    {
+      "id": 0,
+      "name": "알렉스 누아르 (탐정)",
+      "job_id": 0,
+      "initial_room": 0,
+      "description": "짧고 신중하게 말을 고른다",
+      "background": "숨겨진 목적을 가진 비번 수사관"
+    },
+    {
+      "id": 1,
+      "name": "케이시 스칼렛 (배우)",
+      "job_id": 1,
+      "initial_room": 1,
+      "description": "불안한 웃음 뒤에 감정을 감춘다",
+      "background": "스캔들을 피해 도망치는 젊은 배우"
+    },
+    {
+      "id": 2,
+      "name": "에이버리 재스퍼 (사업가)",
+      "job_id": 2,
+      "initial_room": 5,
+      "description": "손익을 따지며 조심스럽게 답한다",
+      "background": "수상한 거래에 관여하는 자본가"
+    },
+    {
+      "id": 3,
+      "name": "로언 앰버 (사기꾼)",
+      "job_id": 3,
+      "initial_room": 4,
+      "description": "농담으로 질문을 돌린다",
+      "background": "사기 전력이 있는 협잡꾼"
+    },
+    {
+      "id": 4,
+      "name": "라일리 올리브 (교수)",
+      "job_id": 4,
+      "initial_room": 6,
+      "description": "관찰한 내용을 차분히 설명한다",
+      "background": "음산한 평판을 가진 과학자"
+    },
+    {
+      "id": 5,
+      "name": "다코타 네이비 (대령)",
+      "job_id": 5,
+      "initial_room": 0,
+      "description": "단정하고 직설적으로 말한다",
+      "background": "엄격한 성격의 퇴역 장교"
+    },
+    {
+      "id": 6,
+      "name": "케이시 더블루 (의사)",
+      "job_id": 6,
+      "initial_room": 1,
+      "description": "상태를 꼼꼼히 살피며 말한다",
+      "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+    },
+    {
+      "id": 7,
+      "name": "바이올렛 모레티 (상속인)",
+      "job_id": 7,
+      "initial_room": 5,
+      "description": "품위를 지키며 날카롭게 되묻는다",
+      "background": "많은 비밀을 간직한 부유한 미망인"
+    },
+    {
+      "id": 8,
+      "name": "캐머런 펄 (기술자)",
+      "job_id": 8,
+      "initial_room": 7,
+      "description": "손끝에 묻은 기름을 닦으며 생각한다",
+      "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+    },
+    {
+      "id": 9,
+      "name": "캉디드 블랑슈 (요리사)",
+      "job_id": 9,
+      "initial_room": 3,
+      "description": "거친 말투 속에 걱정이 묻어난다",
+      "background": "불같은 성격의 요리사"
+    },
+    {
+      "id": 10,
+      "name": "퀸 슬레이트 (차장)",
+      "job_id": 10,
+      "initial_room": 2,
+      "description": "예의를 지키며 승객을 진정시킨다",
+      "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+    },
+    {
+      "id": 11,
+      "name": "파커 에보니 (기자)",
+      "job_id": 11,
+      "initial_room": 6,
+      "description": "질문을 메모하며 말을 이어간다",
+      "background": "세부사항을 놓치지 않는 예리한 기자"
+    }
+  ],
+  "weapons": [
+    {
+      "id": 0,
+      "name": "골동품 단검"
+    },
+    {
+      "id": 1,
+      "name": "유리 조각"
+    },
+    {
+      "id": 2,
+      "name": "드라이버"
+    },
+    {
+      "id": 3,
+      "name": "만년필"
+    },
+    {
+      "id": 4,
+      "name": "편지칼"
+    },
+    {
+      "id": 5,
+      "name": "식칼"
+    },
+    {
+      "id": 6,
+      "name": "총검"
+    },
+    {
+      "id": 7,
+      "name": "머리핀"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 0,
+      "name": "탐정",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 2,
+      "disclosure_bonus": 1,
+      "skills": [
+        {
+          "id": "expert_0",
+          "dice_bonus": 1,
+          "scopes": [
+            "explore",
+            "question",
+            "examine_corpse"
+          ],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "배우",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 3,
+      "disclosure_bonus": 1,
+      "skills": [
+        {
+          "id": "expert_1",
+          "dice_bonus": 1,
+          "scopes": [
+            "question"
+          ],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "사업가",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 4,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_2",
+          "dice_bonus": 1,
+          "scopes": [
+            "explore@5"
+          ],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "사기꾼",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 5,
+      "disclosure_bonus": 1,
+      "skills": [
+        {
+          "id": "expert_3",
+          "dice_bonus": 1,
+          "scopes": [
+            "question"
+          ],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "교수",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 2,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_4",
+          "dice_bonus": 1,
+          "scopes": [],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "대령",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 3,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_5",
+          "dice_bonus": 1,
+          "scopes": [],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "의사",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 4,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_6",
+          "dice_bonus": 1,
+          "scopes": [
+            "examine_corpse"
+          ],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "상속인",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 5,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_7",
+          "dice_bonus": 1,
+          "scopes": [],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "기술자",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 2,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_8",
+          "dice_bonus": 1,
+          "scopes": [
+            "explore@7"
+          ],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "요리사",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 3,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_9",
+          "dice_bonus": 1,
+          "scopes": [
+            "explore@3"
+          ],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "차장",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 4,
+      "disclosure_bonus": 0,
+      "skills": [
+        {
+          "id": "expert_10",
+          "dice_bonus": 1,
+          "scopes": [],
+          "provisional": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "기자",
+      "stat_options": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "default_stat": 5,
+      "disclosure_bonus": 1,
+      "skills": [
+        {
+          "id": "expert_11",
+          "dice_bonus": 1,
+          "scopes": [
+            "question"
+          ],
+          "provisional": true
+        }
+      ]
+    }
+  ],
+  "personalities": [
+    {
+      "id": "warm",
+      "name": "친화적",
+      "disclosure_cap": 2,
+      "reasoning_hint": "협력과 정보 교환을 선호한다",
+      "provisional": true
+    },
+    {
+      "id": "neutral",
+      "name": "신중함",
+      "disclosure_cap": 1,
+      "reasoning_hint": "근거를 확인한 뒤 선택적으로 공유한다",
+      "provisional": true
+    },
+    {
+      "id": "guarded",
+      "name": "경계심",
+      "disclosure_cap": 1,
+      "reasoning_hint": "개인 목표와 비밀 보호를 우선 검토한다",
+      "provisional": true
+    }
+  ],
+  "personal_goals": [
+    {
+      "id": "steal_vault",
+      "name": "금고에서 물건 훔치기",
+      "required": false,
+      "bonus_score": null,
+      "evaluation": "not_implemented"
+    },
+    {
+      "id": "protect_secret",
+      "name": "비밀 지키기",
+      "required": false,
+      "bonus_score": null,
+      "evaluation": "not_implemented"
+    },
+    {
+      "id": "stop_train",
+      "name": "열차를 멈추게 하기",
+      "required": false,
+      "bonus_score": null,
+      "evaluation": "not_implemented"
+    },
+    {
+      "id": "prove_innocence",
+      "name": "자신의 무죄 증명하기",
+      "required": false,
+      "bonus_score": null,
+      "evaluation": "not_implemented"
+    },
+    {
+      "id": "find_love",
+      "name": "사랑 찾기",
+      "required": false,
+      "bonus_score": null,
+      "evaluation": "not_implemented"
+    },
+    {
+      "id": "uncover_secret",
+      "name": "더 거대한 비밀 밝혀내기",
+      "required": false,
+      "bonus_score": null,
+      "evaluation": "not_implemented"
+    },
+    {
+      "id": "keep_awesome",
+      "name": "그냥 계속 멋지게 있기",
+      "required": false,
+      "bonus_score": null,
+      "evaluation": "not_implemented"
+    }
+  ],
+  "rules": {
+    "phase_order": [
+      "movement",
+      "interaction",
+      "deduction"
+    ],
+    "actions_per_phase": 1,
+    "npc_random_movement": true,
+    "corpse_decay_per_cycle": 1,
+    "job_duplicates": true,
+    "prepared_bonus_dice": 1,
+    "base_dice": 1,
+    "wrong_accusation": "death",
+    "zero_active_players": "gm_termination"
+  }
+}

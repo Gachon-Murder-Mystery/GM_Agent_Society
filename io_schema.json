@@ -1,0 +1,900 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "gm-provisional-v0.1 wire formats",
+  "description": "Validate with a selected $defs reference; game legality also requires engine state checks.",
+  "$defs": {
+    "Information": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "enum": [
+            "suspect",
+            "weapon",
+            "place"
+          ]
+        },
+        "excluded_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "excluded_id",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "Presence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "active",
+            "npc",
+            "corpse"
+          ]
+        },
+        "room": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "job": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 11
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "mode",
+        "room",
+        "job"
+      ],
+      "additionalProperties": false
+    },
+    "Control": {
+      "type": "object",
+      "properties": {
+        "controller_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "term": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "controller_id",
+        "term"
+      ],
+      "additionalProperties": false
+    },
+    "ActionRequest": {
+      "type": "object",
+      "properties": {
+        "game_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cycle_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "movement",
+            "interaction",
+            "deduction"
+          ]
+        },
+        "phase_epoch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "agent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "action": {
+          "enum": [
+            "move",
+            "stay",
+            "explore",
+            "question",
+            "examine_corpse",
+            "prepare",
+            "pass",
+            "accuse"
+          ]
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "game_id",
+        "agent_id",
+        "action_id",
+        "cycle_id",
+        "phase",
+        "phase_epoch",
+        "action"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "movement"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "move",
+                  "stay"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "interaction"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "explore",
+                  "question",
+                  "examine_corpse",
+                  "prepare",
+                  "pass"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "deduction"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "accuse",
+                  "pass"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "move"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "room": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 7
+                  }
+                },
+                "required": [
+                  "room"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "payload"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "stay"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "pass"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "prepare"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "explore"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "approach": {
+                    "enum": [
+                      "compassion",
+                      "brutality"
+                    ]
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "question"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "target_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "approach": {
+                    "enum": [
+                      "compassion",
+                      "brutality"
+                    ]
+                  }
+                },
+                "required": [
+                  "target_id"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "payload"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "examine_corpse"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "target_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "approach": {
+                    "enum": [
+                      "compassion",
+                      "brutality"
+                    ]
+                  }
+                },
+                "required": [
+                  "target_id"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "payload"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "accuse"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "suspect": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 11
+                  },
+                  "weapon": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 7
+                  },
+                  "place": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 7
+                  }
+                },
+                "required": [
+                  "suspect",
+                  "weapon",
+                  "place"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "payload"
+            ]
+          }
+        }
+      ]
+    },
+    "ActionResult": {
+      "type": "object",
+      "properties": {
+        "game_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cycle_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "movement",
+            "interaction",
+            "deduction"
+          ]
+        },
+        "phase_epoch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "schema_version": {
+          "const": "gm-provisional-v0.1"
+        },
+        "agent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "action_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "execution_status": {
+          "const": "completed"
+        },
+        "outcome": {
+          "enum": [
+            "succeeded",
+            "failed",
+            "skipped"
+          ]
+        },
+        "consumed": {
+          "const": true
+        },
+        "action": {
+          "enum": [
+            "move",
+            "stay",
+            "explore",
+            "question",
+            "examine_corpse",
+            "prepare",
+            "pass",
+            "accuse"
+          ]
+        },
+        "room": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "actor_mode": {
+          "enum": [
+            "active",
+            "npc",
+            "corpse"
+          ]
+        },
+        "target_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "roll": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "acquired_information": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Information"
+          }
+        },
+        "held_information_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "resolution": {
+          "enum": [
+            null,
+            "solved"
+          ]
+        }
+      },
+      "required": [
+        "game_id",
+        "cycle_id",
+        "phase",
+        "phase_epoch",
+        "schema_version",
+        "agent_id",
+        "action_id",
+        "task_id",
+        "execution_status",
+        "outcome",
+        "consumed",
+        "action",
+        "room",
+        "actor_mode",
+        "target_id",
+        "roll",
+        "acquired_information",
+        "held_information_ids",
+        "resolution"
+      ],
+      "additionalProperties": false
+    },
+    "PhaseNotice": {
+      "type": "object",
+      "properties": {
+        "game_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cycle_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "movement",
+            "interaction",
+            "deduction"
+          ]
+        },
+        "phase_epoch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "agent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowed_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "remaining_actions": {
+          "const": 1
+        },
+        "self": {
+          "type": "object"
+        },
+        "occupants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Presence"
+          }
+        },
+        "shared_information": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Information"
+          }
+        },
+        "positions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Presence"
+          }
+        }
+      },
+      "required": [
+        "game_id",
+        "cycle_id",
+        "phase",
+        "phase_epoch",
+        "agent_id",
+        "task_id",
+        "allowed_actions",
+        "remaining_actions",
+        "self",
+        "occupants",
+        "shared_information"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "phase": {
+                "const": "movement"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "positions"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "positions"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "EngineEvent": {
+      "type": "object",
+      "properties": {
+        "game_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cycle_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "movement",
+            "interaction",
+            "deduction"
+          ]
+        },
+        "phase_epoch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "schema_version": {
+          "const": "gm-provisional-v0.1"
+        },
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "type": {
+          "enum": [
+            "game_started",
+            "action_completed",
+            "information_shared",
+            "actor_died",
+            "actor_became_npc",
+            "gm_replaced",
+            "phase_started",
+            "information_decayed",
+            "npc_moved",
+            "game_ended"
+          ]
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "game_id",
+        "cycle_id",
+        "phase",
+        "phase_epoch",
+        "schema_version",
+        "event_id",
+        "sequence",
+        "type",
+        "payload"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "action_completed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "$ref": "#/$defs/ActionResult"
+                  },
+                  "visibility": {
+                    "const": "gm_supervisory"
+                  }
+                },
+                "required": [
+                  "result",
+                  "visibility"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "GMSnapshot": {
+      "type": "object",
+      "properties": {
+        "game_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cycle_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "movement",
+            "interaction",
+            "deduction"
+          ]
+        },
+        "phase_epoch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "control": {
+          "$ref": "#/$defs/Control"
+        },
+        "event_sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "active_agents": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Presence"
+          }
+        },
+        "inventories": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "observed_information": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Information"
+          }
+        },
+        "shared_information": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Information"
+          }
+        },
+        "spent": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ended": {
+          "type": "boolean"
+        },
+        "end_reason": {
+          "enum": [
+            null,
+            "solved",
+            "technical_failure",
+            "deduction_failure"
+          ]
+        },
+        "resolution": {
+          "enum": [
+            null,
+            "solved"
+          ]
+        },
+        "last_removal_reason": {
+          "enum": [
+            null,
+            "technical_failure",
+            "deduction_failure"
+          ]
+        }
+      },
+      "required": [
+        "game_id",
+        "cycle_id",
+        "phase",
+        "phase_epoch",
+        "control",
+        "event_sequence",
+        "active_agents",
+        "actors",
+        "inventories",
+        "observed_information",
+        "shared_information",
+        "spent",
+        "ended",
+        "end_reason",
+        "resolution",
+        "last_removal_reason"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,1483 @@
+{
+  "scope": "local mock execution",
+  "runs": [
+    {
+      "schema_version": "gm-provisional-v0.1",
+      "scenario": "normal",
+      "seed": 42,
+      "agents_initial": 3,
+      "agents_remaining": 3,
+      "cycle_id": 31,
+      "phase": "deduction",
+      "ended": true,
+      "end_reason": "solved",
+      "driver_stopped": false,
+      "control": {
+        "controller_id": "gm-primary",
+        "term": 1
+      },
+      "actions_recorded": 277,
+      "event_counts": {
+        "game_started": 1,
+        "action_completed": 277,
+        "phase_started": 92,
+        "information_shared": 267,
+        "npc_moved": 30,
+        "game_ended": 1
+      },
+      "notes": [
+        "Local mock execution only; no A/B production integration or live LLM verification.",
+        "Parallel scheduling can change outcomes for the same seed; retain event order for replay."
+      ],
+      "actors": [
+        {
+          "id": "player_1",
+          "name": "player_1",
+          "mode": "active",
+          "room": 0,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "player_2",
+          "name": "player_2",
+          "mode": "active",
+          "room": 1,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        },
+        {
+          "id": "player_3",
+          "name": "player_3",
+          "mode": "active",
+          "room": 2,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:0",
+          "name": "알렉스 누아르 (탐정)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 0,
+            "name": "탐정"
+          }
+        },
+        {
+          "id": "npc:1",
+          "name": "케이시 스칼렛 (배우)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 1,
+            "name": "배우"
+          }
+        },
+        {
+          "id": "npc:2",
+          "name": "에이버리 재스퍼 (사업가)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 2,
+            "name": "사업가"
+          }
+        },
+        {
+          "id": "npc:3",
+          "name": "로언 앰버 (사기꾼)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:4",
+          "name": "라일리 올리브 (교수)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 4,
+            "name": "교수"
+          }
+        },
+        {
+          "id": "npc:5",
+          "name": "다코타 네이비 (대령)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 5,
+            "name": "대령"
+          }
+        },
+        {
+          "id": "npc:6",
+          "name": "케이시 더블루 (의사)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 6,
+            "name": "의사"
+          }
+        },
+        {
+          "id": "npc:7",
+          "name": "바이올렛 모레티 (상속인)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 7,
+            "name": "상속인"
+          }
+        },
+        {
+          "id": "npc:8",
+          "name": "캐머런 펄 (기술자)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 8,
+            "name": "기술자"
+          }
+        },
+        {
+          "id": "npc:9",
+          "name": "캉디드 블랑슈 (요리사)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 9,
+            "name": "요리사"
+          }
+        },
+        {
+          "id": "npc:10",
+          "name": "퀸 슬레이트 (차장)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:11",
+          "name": "파커 에보니 (기자)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        }
+      ],
+      "information_owners": {
+        "player_1": [
+          "place:2",
+          "suspect:6",
+          "weapon:7",
+          "place:3",
+          "suspect:11",
+          "weapon:3",
+          "suspect:3",
+          "weapon:5",
+          "place:1",
+          "place:7",
+          "weapon:4",
+          "suspect:7",
+          "suspect:2",
+          "place:4",
+          "suspect:0",
+          "suspect:4",
+          "place:6"
+        ],
+        "player_2": [
+          "weapon:0",
+          "suspect:6",
+          "suspect:1",
+          "suspect:4",
+          "weapon:5",
+          "suspect:2",
+          "suspect:8",
+          "place:2",
+          "weapon:4",
+          "weapon:7",
+          "suspect:7",
+          "place:4",
+          "suspect:3",
+          "place:5",
+          "suspect:9",
+          "place:3",
+          "suspect:11",
+          "weapon:3",
+          "place:6",
+          "place:1",
+          "suspect:5"
+        ],
+        "player_3": [
+          "suspect:1",
+          "suspect:4",
+          "place:6",
+          "suspect:11",
+          "place:5",
+          "suspect:9",
+          "weapon:2",
+          "weapon:5",
+          "place:1",
+          "place:4",
+          "weapon:7",
+          "place:3",
+          "suspect:7",
+          "suspect:2",
+          "weapon:6",
+          "weapon:0",
+          "weapon:4",
+          "suspect:8"
+        ]
+      }
+    },
+    {
+      "schema_version": "gm-provisional-v0.1",
+      "scenario": "player-fault",
+      "seed": 42,
+      "agents_initial": 3,
+      "agents_remaining": 2,
+      "cycle_id": 39,
+      "phase": "deduction",
+      "ended": true,
+      "end_reason": "solved",
+      "driver_stopped": false,
+      "control": {
+        "controller_id": "gm-primary",
+        "term": 1
+      },
+      "actions_recorded": 235,
+      "event_counts": {
+        "game_started": 1,
+        "action_completed": 235,
+        "phase_started": 116,
+        "information_shared": 227,
+        "actor_became_npc": 1,
+        "npc_moved": 38,
+        "game_ended": 1
+      },
+      "notes": [
+        "Local mock execution only; no A/B production integration or live LLM verification.",
+        "Parallel scheduling can change outcomes for the same seed; retain event order for replay."
+      ],
+      "actors": [
+        {
+          "id": "player_1",
+          "name": "player_1",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "player_2",
+          "name": "player_2",
+          "mode": "active",
+          "room": 1,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        },
+        {
+          "id": "player_3",
+          "name": "player_3",
+          "mode": "active",
+          "room": 2,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:0",
+          "name": "알렉스 누아르 (탐정)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 0,
+            "name": "탐정"
+          }
+        },
+        {
+          "id": "npc:1",
+          "name": "케이시 스칼렛 (배우)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 1,
+            "name": "배우"
+          }
+        },
+        {
+          "id": "npc:2",
+          "name": "에이버리 재스퍼 (사업가)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 2,
+            "name": "사업가"
+          }
+        },
+        {
+          "id": "npc:3",
+          "name": "로언 앰버 (사기꾼)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:4",
+          "name": "라일리 올리브 (교수)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 4,
+            "name": "교수"
+          }
+        },
+        {
+          "id": "npc:5",
+          "name": "다코타 네이비 (대령)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 5,
+            "name": "대령"
+          }
+        },
+        {
+          "id": "npc:6",
+          "name": "케이시 더블루 (의사)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 6,
+            "name": "의사"
+          }
+        },
+        {
+          "id": "npc:7",
+          "name": "바이올렛 모레티 (상속인)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 7,
+            "name": "상속인"
+          }
+        },
+        {
+          "id": "npc:8",
+          "name": "캐머런 펄 (기술자)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 8,
+            "name": "기술자"
+          }
+        },
+        {
+          "id": "npc:9",
+          "name": "캉디드 블랑슈 (요리사)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 9,
+            "name": "요리사"
+          }
+        },
+        {
+          "id": "npc:10",
+          "name": "퀸 슬레이트 (차장)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:11",
+          "name": "파커 에보니 (기자)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        }
+      ],
+      "information_owners": {
+        "player_1": [],
+        "player_2": [
+          "weapon:0",
+          "place:5",
+          "weapon:7",
+          "suspect:2",
+          "place:2",
+          "suspect:6",
+          "suspect:9",
+          "suspect:4",
+          "weapon:5",
+          "place:4",
+          "suspect:3",
+          "weapon:4",
+          "suspect:1",
+          "weapon:2",
+          "place:6",
+          "suspect:11",
+          "place:3",
+          "suspect:7",
+          "place:1",
+          "suspect:5",
+          "weapon:6",
+          "weapon:3"
+        ],
+        "player_3": [
+          "suspect:1",
+          "suspect:4",
+          "place:6",
+          "suspect:8",
+          "weapon:7",
+          "weapon:2",
+          "weapon:5",
+          "place:2",
+          "place:5",
+          "suspect:9",
+          "place:3",
+          "suspect:7",
+          "suspect:5",
+          "weapon:6",
+          "weapon:4",
+          "suspect:0",
+          "place:1",
+          "weapon:3",
+          "place:7"
+        ]
+      }
+    },
+    {
+      "schema_version": "gm-provisional-v0.1",
+      "scenario": "gm-fault",
+      "seed": 42,
+      "agents_initial": 3,
+      "agents_remaining": 2,
+      "cycle_id": 39,
+      "phase": "deduction",
+      "ended": true,
+      "end_reason": "solved",
+      "driver_stopped": false,
+      "control": {
+        "controller_id": "player_1",
+        "term": 2
+      },
+      "actions_recorded": 235,
+      "event_counts": {
+        "game_started": 1,
+        "action_completed": 235,
+        "phase_started": 116,
+        "information_shared": 227,
+        "gm_replaced": 1,
+        "npc_moved": 38,
+        "game_ended": 1
+      },
+      "notes": [
+        "Local mock execution only; no A/B production integration or live LLM verification.",
+        "Parallel scheduling can change outcomes for the same seed; retain event order for replay."
+      ],
+      "actors": [
+        {
+          "id": "player_1",
+          "name": "player_1",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "player_2",
+          "name": "player_2",
+          "mode": "active",
+          "room": 1,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        },
+        {
+          "id": "player_3",
+          "name": "player_3",
+          "mode": "active",
+          "room": 2,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:0",
+          "name": "알렉스 누아르 (탐정)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 0,
+            "name": "탐정"
+          }
+        },
+        {
+          "id": "npc:1",
+          "name": "케이시 스칼렛 (배우)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 1,
+            "name": "배우"
+          }
+        },
+        {
+          "id": "npc:2",
+          "name": "에이버리 재스퍼 (사업가)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 2,
+            "name": "사업가"
+          }
+        },
+        {
+          "id": "npc:3",
+          "name": "로언 앰버 (사기꾼)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:4",
+          "name": "라일리 올리브 (교수)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 4,
+            "name": "교수"
+          }
+        },
+        {
+          "id": "npc:5",
+          "name": "다코타 네이비 (대령)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 5,
+            "name": "대령"
+          }
+        },
+        {
+          "id": "npc:6",
+          "name": "케이시 더블루 (의사)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 6,
+            "name": "의사"
+          }
+        },
+        {
+          "id": "npc:7",
+          "name": "바이올렛 모레티 (상속인)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 7,
+            "name": "상속인"
+          }
+        },
+        {
+          "id": "npc:8",
+          "name": "캐머런 펄 (기술자)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 8,
+            "name": "기술자"
+          }
+        },
+        {
+          "id": "npc:9",
+          "name": "캉디드 블랑슈 (요리사)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 9,
+            "name": "요리사"
+          }
+        },
+        {
+          "id": "npc:10",
+          "name": "퀸 슬레이트 (차장)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:11",
+          "name": "파커 에보니 (기자)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        }
+      ],
+      "information_owners": {
+        "player_1": [],
+        "player_2": [
+          "weapon:0",
+          "place:5",
+          "weapon:7",
+          "suspect:2",
+          "place:2",
+          "suspect:6",
+          "suspect:9",
+          "suspect:4",
+          "weapon:5",
+          "place:4",
+          "suspect:3",
+          "weapon:4",
+          "suspect:1",
+          "weapon:2",
+          "place:6",
+          "suspect:11",
+          "place:3",
+          "suspect:7",
+          "place:1",
+          "suspect:5",
+          "weapon:6",
+          "weapon:3"
+        ],
+        "player_3": [
+          "suspect:1",
+          "suspect:4",
+          "place:6",
+          "suspect:8",
+          "weapon:7",
+          "weapon:2",
+          "weapon:5",
+          "place:2",
+          "place:5",
+          "suspect:9",
+          "place:3",
+          "suspect:7",
+          "suspect:5",
+          "weapon:6",
+          "weapon:4",
+          "suspect:0",
+          "place:1",
+          "weapon:3",
+          "place:7"
+        ]
+      }
+    },
+    {
+      "schema_version": "gm-provisional-v0.1",
+      "scenario": "death",
+      "seed": 42,
+      "agents_initial": 3,
+      "agents_remaining": 2,
+      "cycle_id": 38,
+      "phase": "deduction",
+      "ended": true,
+      "end_reason": "solved",
+      "driver_stopped": false,
+      "control": {
+        "controller_id": "gm-primary",
+        "term": 1
+      },
+      "actions_recorded": 230,
+      "event_counts": {
+        "game_started": 1,
+        "action_completed": 230,
+        "phase_started": 113,
+        "information_shared": 221,
+        "actor_died": 1,
+        "npc_moved": 37,
+        "game_ended": 1
+      },
+      "notes": [
+        "Local mock execution only; no A/B production integration or live LLM verification.",
+        "Parallel scheduling can change outcomes for the same seed; retain event order for replay."
+      ],
+      "actors": [
+        {
+          "id": "player_1",
+          "name": "player_1",
+          "mode": "corpse",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "player_2",
+          "name": "player_2",
+          "mode": "active",
+          "room": 0,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        },
+        {
+          "id": "player_3",
+          "name": "player_3",
+          "mode": "active",
+          "room": 1,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:0",
+          "name": "알렉스 누아르 (탐정)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 0,
+            "name": "탐정"
+          }
+        },
+        {
+          "id": "npc:1",
+          "name": "케이시 스칼렛 (배우)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 1,
+            "name": "배우"
+          }
+        },
+        {
+          "id": "npc:2",
+          "name": "에이버리 재스퍼 (사업가)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 2,
+            "name": "사업가"
+          }
+        },
+        {
+          "id": "npc:3",
+          "name": "로언 앰버 (사기꾼)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:4",
+          "name": "라일리 올리브 (교수)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 4,
+            "name": "교수"
+          }
+        },
+        {
+          "id": "npc:5",
+          "name": "다코타 네이비 (대령)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 5,
+            "name": "대령"
+          }
+        },
+        {
+          "id": "npc:6",
+          "name": "케이시 더블루 (의사)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 6,
+            "name": "의사"
+          }
+        },
+        {
+          "id": "npc:7",
+          "name": "바이올렛 모레티 (상속인)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 7,
+            "name": "상속인"
+          }
+        },
+        {
+          "id": "npc:8",
+          "name": "캐머런 펄 (기술자)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 8,
+            "name": "기술자"
+          }
+        },
+        {
+          "id": "npc:9",
+          "name": "캉디드 블랑슈 (요리사)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 9,
+            "name": "요리사"
+          }
+        },
+        {
+          "id": "npc:10",
+          "name": "퀸 슬레이트 (차장)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:11",
+          "name": "파커 에보니 (기자)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        }
+      ],
+      "information_owners": {
+        "player_1": [],
+        "player_2": [
+          "weapon:0",
+          "place:5",
+          "suspect:9",
+          "weapon:2",
+          "place:6",
+          "weapon:6",
+          "place:2",
+          "suspect:6",
+          "place:3",
+          "weapon:5",
+          "suspect:2",
+          "suspect:3",
+          "weapon:4",
+          "suspect:4",
+          "suspect:7",
+          "weapon:3",
+          "suspect:0",
+          "suspect:1",
+          "suspect:5",
+          "place:7",
+          "suspect:11"
+        ],
+        "player_3": [
+          "suspect:1",
+          "suspect:4",
+          "suspect:2",
+          "suspect:5",
+          "weapon:0",
+          "place:5",
+          "weapon:7",
+          "place:6",
+          "suspect:11",
+          "suspect:0",
+          "suspect:3",
+          "weapon:4",
+          "suspect:9",
+          "place:3",
+          "suspect:7",
+          "place:1",
+          "place:7",
+          "weapon:2",
+          "weapon:3",
+          "suspect:8",
+          "place:2",
+          "suspect:6",
+          "weapon:5",
+          "place:4"
+        ]
+      }
+    },
+    {
+      "schema_version": "gm-provisional-v0.1",
+      "scenario": "all-fault",
+      "seed": 42,
+      "agents_initial": 3,
+      "agents_remaining": 0,
+      "cycle_id": 1,
+      "phase": "deduction",
+      "ended": true,
+      "end_reason": "technical_failure",
+      "driver_stopped": false,
+      "control": {
+        "controller_id": "gm-primary",
+        "term": 1
+      },
+      "actions_recorded": 6,
+      "event_counts": {
+        "game_started": 1,
+        "action_completed": 6,
+        "phase_started": 2,
+        "information_shared": 1,
+        "actor_became_npc": 3,
+        "game_ended": 1
+      },
+      "notes": [
+        "Local mock execution only; no A/B production integration or live LLM verification.",
+        "Parallel scheduling can change outcomes for the same seed; retain event order for replay."
+      ],
+      "actors": [
+        {
+          "id": "player_1",
+          "name": "player_1",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "player_2",
+          "name": "player_2",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        },
+        {
+          "id": "player_3",
+          "name": "player_3",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:0",
+          "name": "알렉스 누아르 (탐정)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 0,
+            "name": "탐정"
+          }
+        },
+        {
+          "id": "npc:1",
+          "name": "케이시 스칼렛 (배우)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 1,
+            "name": "배우"
+          }
+        },
+        {
+          "id": "npc:2",
+          "name": "에이버리 재스퍼 (사업가)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 2,
+            "name": "사업가"
+          }
+        },
+        {
+          "id": "npc:3",
+          "name": "로언 앰버 (사기꾼)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:4",
+          "name": "라일리 올리브 (교수)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 4,
+            "name": "교수"
+          }
+        },
+        {
+          "id": "npc:5",
+          "name": "다코타 네이비 (대령)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 5,
+            "name": "대령"
+          }
+        },
+        {
+          "id": "npc:6",
+          "name": "케이시 더블루 (의사)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 6,
+            "name": "의사"
+          }
+        },
+        {
+          "id": "npc:7",
+          "name": "바이올렛 모레티 (상속인)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 7,
+            "name": "상속인"
+          }
+        },
+        {
+          "id": "npc:8",
+          "name": "캐머런 펄 (기술자)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 8,
+            "name": "기술자"
+          }
+        },
+        {
+          "id": "npc:9",
+          "name": "캉디드 블랑슈 (요리사)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 9,
+            "name": "요리사"
+          }
+        },
+        {
+          "id": "npc:10",
+          "name": "퀸 슬레이트 (차장)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:11",
+          "name": "파커 에보니 (기자)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        }
+      ],
+      "information_owners": {
+        "player_1": [],
+        "player_2": [
+          "weapon:0"
+        ],
+        "player_3": []
+      }
+    },
+    {
+      "schema_version": "gm-provisional-v0.1",
+      "scenario": "all-dead",
+      "seed": 42,
+      "agents_initial": 3,
+      "agents_remaining": 0,
+      "cycle_id": 1,
+      "phase": "deduction",
+      "ended": true,
+      "end_reason": "deduction_failure",
+      "driver_stopped": false,
+      "control": {
+        "controller_id": "gm-primary",
+        "term": 1
+      },
+      "actions_recorded": 9,
+      "event_counts": {
+        "game_started": 1,
+        "action_completed": 9,
+        "phase_started": 2,
+        "information_shared": 1,
+        "actor_died": 3,
+        "game_ended": 1
+      },
+      "notes": [
+        "Local mock execution only; no A/B production integration or live LLM verification.",
+        "Parallel scheduling can change outcomes for the same seed; retain event order for replay."
+      ],
+      "actors": [
+        {
+          "id": "player_1",
+          "name": "player_1",
+          "mode": "corpse",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "player_2",
+          "name": "player_2",
+          "mode": "corpse",
+          "room": 3,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        },
+        {
+          "id": "player_3",
+          "name": "player_3",
+          "mode": "corpse",
+          "room": 4,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:0",
+          "name": "알렉스 누아르 (탐정)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 0,
+            "name": "탐정"
+          }
+        },
+        {
+          "id": "npc:1",
+          "name": "케이시 스칼렛 (배우)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 1,
+            "name": "배우"
+          }
+        },
+        {
+          "id": "npc:2",
+          "name": "에이버리 재스퍼 (사업가)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 2,
+            "name": "사업가"
+          }
+        },
+        {
+          "id": "npc:3",
+          "name": "로언 앰버 (사기꾼)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:4",
+          "name": "라일리 올리브 (교수)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 4,
+            "name": "교수"
+          }
+        },
+        {
+          "id": "npc:5",
+          "name": "다코타 네이비 (대령)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 5,
+            "name": "대령"
+          }
+        },
+        {
+          "id": "npc:6",
+          "name": "케이시 더블루 (의사)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 6,
+            "name": "의사"
+          }
+        },
+        {
+          "id": "npc:7",
+          "name": "바이올렛 모레티 (상속인)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 7,
+            "name": "상속인"
+          }
+        },
+        {
+          "id": "npc:8",
+          "name": "캐머런 펄 (기술자)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 8,
+            "name": "기술자"
+          }
+        },
+        {
+          "id": "npc:9",
+          "name": "캉디드 블랑슈 (요리사)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 9,
+            "name": "요리사"
+          }
+        },
+        {
+          "id": "npc:10",
+          "name": "퀸 슬레이트 (차장)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:11",
+          "name": "파커 에보니 (기자)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        }
+      ],
+      "information_owners": {
+        "player_1": [],
+        "player_2": [
+          "weapon:0"
+        ],
+        "player_3": []
+      }
+    },
+    {
+      "schema_version": "gm-provisional-v0.1",
+      "scenario": "gm-fault",
+      "seed": 42,
+      "agents_initial": 1,
+      "agents_remaining": 0,
+      "cycle_id": 1,
+      "phase": "deduction",
+      "ended": true,
+      "end_reason": "technical_failure",
+      "driver_stopped": false,
+      "control": {
+        "controller_id": "player_1",
+        "term": 2
+      },
+      "actions_recorded": 2,
+      "event_counts": {
+        "game_started": 1,
+        "action_completed": 2,
+        "phase_started": 2,
+        "gm_replaced": 1,
+        "game_ended": 1
+      },
+      "notes": [
+        "Local mock execution only; no A/B production integration or live LLM verification.",
+        "Parallel scheduling can change outcomes for the same seed; retain event order for replay."
+      ],
+      "actors": [
+        {
+          "id": "player_1",
+          "name": "player_1",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:0",
+          "name": "알렉스 누아르 (탐정)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 0,
+            "name": "탐정"
+          }
+        },
+        {
+          "id": "npc:1",
+          "name": "케이시 스칼렛 (배우)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 1,
+            "name": "배우"
+          }
+        },
+        {
+          "id": "npc:2",
+          "name": "에이버리 재스퍼 (사업가)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 2,
+            "name": "사업가"
+          }
+        },
+        {
+          "id": "npc:3",
+          "name": "로언 앰버 (사기꾼)",
+          "mode": "npc",
+          "room": 4,
+          "job": {
+            "id": 3,
+            "name": "사기꾼"
+          }
+        },
+        {
+          "id": "npc:4",
+          "name": "라일리 올리브 (교수)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 4,
+            "name": "교수"
+          }
+        },
+        {
+          "id": "npc:5",
+          "name": "다코타 네이비 (대령)",
+          "mode": "npc",
+          "room": 0,
+          "job": {
+            "id": 5,
+            "name": "대령"
+          }
+        },
+        {
+          "id": "npc:6",
+          "name": "케이시 더블루 (의사)",
+          "mode": "npc",
+          "room": 1,
+          "job": {
+            "id": 6,
+            "name": "의사"
+          }
+        },
+        {
+          "id": "npc:7",
+          "name": "바이올렛 모레티 (상속인)",
+          "mode": "npc",
+          "room": 5,
+          "job": {
+            "id": 7,
+            "name": "상속인"
+          }
+        },
+        {
+          "id": "npc:8",
+          "name": "캐머런 펄 (기술자)",
+          "mode": "npc",
+          "room": 7,
+          "job": {
+            "id": 8,
+            "name": "기술자"
+          }
+        },
+        {
+          "id": "npc:9",
+          "name": "캉디드 블랑슈 (요리사)",
+          "mode": "npc",
+          "room": 3,
+          "job": {
+            "id": 9,
+            "name": "요리사"
+          }
+        },
+        {
+          "id": "npc:10",
+          "name": "퀸 슬레이트 (차장)",
+          "mode": "npc",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장"
+          }
+        },
+        {
+          "id": "npc:11",
+          "name": "파커 에보니 (기자)",
+          "mode": "npc",
+          "room": 6,
+          "job": {
+            "id": 11,
+            "name": "기자"
+          }
+        }
+      ],
+      "information_owners": {
+        "player_1": []
+      }
+    }
+  ]
+}
