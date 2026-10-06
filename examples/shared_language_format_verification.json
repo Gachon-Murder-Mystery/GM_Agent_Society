@@ -1,0 +1,17 @@
+{
+  "scope": "JSON format validation only; not engine legality, semantic equivalence or team adoption",
+  "schema_version": "gm-provisional-v0.1",
+  "validated_message_count": 9,
+  "formats": [
+    "PhaseNotice",
+    "ActionRequest",
+    "ActionResult",
+    "EngineEvent",
+    "ActionRequest",
+    "ActionRequest",
+    "ActionRequest",
+    "Information",
+    "Information"
+  ],
+  "successful": true
+}

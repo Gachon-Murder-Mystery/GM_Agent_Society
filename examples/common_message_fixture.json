@@ -1,0 +1,195 @@
+{
+  "schema_version": "gm-provisional-v0.1",
+  "provenance": "C provisional mock execution extracted from examples/io_samples.json; not A/B native messages",
+  "case": "investigation completed without acquiring information; action consumed, actor remains active",
+  "messages": [
+    {
+      "format": "PhaseNotice",
+      "producer": "C",
+      "consumer": "B:player_1",
+      "data": {
+        "game_id": "demo-normal-3-42",
+        "agent_id": "player_1",
+        "cycle_id": 1,
+        "phase": "interaction",
+        "phase_epoch": 2,
+        "task_id": "demo-normal-3-42:2:player_1",
+        "allowed_actions": [
+          "explore",
+          "question",
+          "examine_corpse",
+          "prepare",
+          "pass"
+        ],
+        "remaining_actions": 1,
+        "self": {
+          "id": "player_1",
+          "mode": "active",
+          "room": 2,
+          "job": {
+            "id": 10,
+            "name": "차장",
+            "stat_options": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "default_stat": 4,
+            "disclosure_bonus": 0,
+            "skills": [
+              {
+                "id": "expert_10",
+                "dice_bonus": 1,
+                "scopes": [],
+                "provisional": true
+              }
+            ]
+          },
+          "stat": 4,
+          "personality": {
+            "id": "warm",
+            "name": "친화적",
+            "disclosure_cap": 2,
+            "reasoning_hint": "협력과 정보 교환을 선호한다",
+            "provisional": true
+          },
+          "personal_goal": {
+            "id": "steal_vault",
+            "name": "금고에서 물건 훔치기",
+            "required": false,
+            "bonus_score": null,
+            "evaluation": "not_implemented"
+          },
+          "prepared": false
+        },
+        "occupants": [
+          {
+            "id": "npc:10",
+            "name": "퀸 슬레이트 (차장)",
+            "mode": "npc",
+            "room": 2,
+            "job": {
+              "id": 10,
+              "name": "차장"
+            }
+          }
+        ],
+        "shared_information": []
+      }
+    },
+    {
+      "format": "ActionRequest",
+      "producer": "B contract (scripted mock)",
+      "consumer": "A contract (mock)",
+      "data": {
+        "game_id": "demo-normal-3-42",
+        "agent_id": "player_1",
+        "action_id": "demo-normal-3-42:2:player_1:action",
+        "cycle_id": 1,
+        "phase": "interaction",
+        "phase_epoch": 2,
+        "action": "explore",
+        "payload": {
+          "approach": "brutality"
+        },
+        "task_id": "demo-normal-3-42:2:player_1"
+      }
+    },
+    {
+      "format": "ActionResult",
+      "producer": "A contract (mock)",
+      "consumer": "B:player_1",
+      "data": {
+        "schema_version": "gm-provisional-v0.1",
+        "game_id": "demo-normal-3-42",
+        "agent_id": "player_1",
+        "action_id": "demo-normal-3-42:2:player_1:action",
+        "task_id": "demo-normal-3-42:2:player_1",
+        "cycle_id": 1,
+        "phase": "interaction",
+        "phase_epoch": 2,
+        "execution_status": "completed",
+        "outcome": "failed",
+        "consumed": true,
+        "action": "explore",
+        "room": 2,
+        "actor_mode": "active",
+        "target_id": null,
+        "roll": {
+          "dice": [
+            4
+          ],
+          "successes": 0,
+          "approach": "brutality",
+          "stat": 4,
+          "expert": false,
+          "complication": null
+        },
+        "acquired_information": [],
+        "held_information_ids": [],
+        "resolution": null
+      }
+    },
+    {
+      "format": "EngineEvent",
+      "producer": "A contract (mock)",
+      "consumer": "C",
+      "data": {
+        "schema_version": "gm-provisional-v0.1",
+        "game_id": "demo-normal-3-42",
+        "event_id": "demo-normal-3-42:6",
+        "sequence": 6,
+        "cycle_id": 1,
+        "phase": "interaction",
+        "phase_epoch": 2,
+        "type": "action_completed",
+        "payload": {
+          "result": {
+            "schema_version": "gm-provisional-v0.1",
+            "game_id": "demo-normal-3-42",
+            "agent_id": "player_1",
+            "action_id": "demo-normal-3-42:2:player_1:action",
+            "task_id": "demo-normal-3-42:2:player_1",
+            "cycle_id": 1,
+            "phase": "interaction",
+            "phase_epoch": 2,
+            "execution_status": "completed",
+            "outcome": "failed",
+            "consumed": true,
+            "action": "explore",
+            "room": 2,
+            "actor_mode": "active",
+            "target_id": null,
+            "roll": {
+              "dice": [
+                4
+              ],
+              "successes": 0,
+              "approach": "brutality",
+              "stat": 4,
+              "expert": false,
+              "complication": null
+            },
+            "acquired_information": [],
+            "held_information_ids": [],
+            "resolution": null
+          },
+          "visibility": "gm_supervisory"
+        }
+      }
+    }
+  ],
+  "expected_meaning": {
+    "same_result_for_player_and_supervisory_gm": true,
+    "game_id": "demo-normal-3-42",
+    "agent_id": "player_1",
+    "action_id": "demo-normal-3-42:2:player_1:action",
+    "failed_roll_is_completed_action": true,
+    "technical_failure": false,
+    "actor_mode": "active",
+    "action_consumed": true,
+    "other_players_receive_private_result": false,
+    "actual_native_acquired_information_examples": "shared_language_20261006.json: acquired_information_roundtrips"
+  }
+}

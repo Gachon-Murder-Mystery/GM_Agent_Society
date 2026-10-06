@@ -40,6 +40,8 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `TEAM_REPO_REVIEW_20261006.md` | A/B 저장소의 확인 커밋·기존 테스트·GM 연결 차이 |
 | `INTEGRATION_STATUS_20261006.md` | 실제 팀 코드·HTTP 연결 시도와 전체 GM 연결의 차단 사유 |
 | `team_adapters.py` / `integration_probe.py` | 실제 A/B 데모 함수 연결 및 native 서버 점검 |
+| `SHARED_LANGUAGE_20261006.md` | A/B/C 필드 의미 대조와 팀 공통 메시지의 연결 기준 |
+| `message_language.py` / `language_probe.py` | 실제 명령·단서의 의미 보존 변환 및 재검사 |
 | `io_schema.json` | JSON 입출력의 형식 명세 |
 | `examples/` | 실제 모의 실행에서 생성한 입출력·결과 |
 
@@ -65,6 +67,8 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 동일 seed는 초기 사건·캐릭터 조합을 재현하지만, 병렬 행동의 도착 순서가 달라지면 주사위와 진행 결과도 달라질 수 있다. 비교·재현에는 seed뿐 아니라 이벤트 순서와 실행 조건도 보존해야 한다.
 
 실제 팀 저장소를 점검하려면 워크스페이스 루트에서 `python -m gm_coordinator.integration_probe`를 실행한다. 기본적으로 같은 상위 폴더의 `Game-engine`과 `Agent_Reasoning`을 읽는다. 경로가 다르면 `--engine-repo`와 `--agent-repo`로 지정한다. 기존 데모 함수와 HTTP 서버를 실제 실행하지만, 전체 GM 계약이 없으면 연결을 명시적으로 차단한다. 이 결과는 `demo.py`의 모의 실행 결과와 별도로 저장한다. 실시간 LLM과 자동 장애 감시는 실행하지 않는다.
+
+자료가 같은 의미로 이동하는지 확인하려면 `python -m gm_coordinator.language_probe`를 실행한다. 실제 A/B 명령 본문과 C ActionRequest의 왕복 변환, 카탈로그 ID, 실제 획득 단서의 C Information 변환을 확인한다. 형식·의미·팀 채택의 차이는 `SHARED_LANGUAGE_20261006.md`에 정리했다. 이 기준안의 A/B 채택은 아직 확인되지 않았다.
 
 ## 출처와 라이선스
 

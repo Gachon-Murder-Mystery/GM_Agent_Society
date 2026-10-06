@@ -1,0 +1,9 @@
+{
+  "scope": "9 message meaning tests, 6 actual team adapter tests, 22 mock coordinator tests; not A/B protocol adoption",
+  "command": "python -m unittest gm_coordinator.test_message_language gm_coordinator.test_team_adapters gm_coordinator.test_coordinator -v",
+  "run": 37,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true
+}

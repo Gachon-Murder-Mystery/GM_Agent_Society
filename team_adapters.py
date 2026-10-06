@@ -13,6 +13,7 @@ import uuid
 from pathlib import Path
 
 from .contracts import ContractError, EnginePort, PlayerPort
+from .message_language import normalize_acquired_clue
 
 
 class IntegrationUnavailable(ContractError):
@@ -176,6 +177,7 @@ class LegacyGMObserver:
             "room": observation["room"],
             "information_ids": [clue["id"] for clue in observation["clues"]],
             "information": copy.deepcopy(observation["clues"]),
+            "normalized_information": [normalize_acquired_clue(clue)["information"] for clue in observation["clues"]],
             "source": "actual A public observation; polled/client-received",
             "engine_completion_event": False,
             "official_phase_token": None,

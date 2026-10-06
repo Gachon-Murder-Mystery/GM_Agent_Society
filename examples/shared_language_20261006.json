@@ -1,0 +1,520 @@
+{
+  "schema_version": "gm-provisional-v0.1",
+  "report_kind": "message_semantics_evidence",
+  "repositories": [
+    {
+      "role": "A",
+      "commit": "dca35b989249bf1fc7e52ca404805b73e0a52648"
+    },
+    {
+      "role": "B",
+      "commit": "24eeeb1e6154de3d1a9cd3d891f3479112a9d2c1"
+    }
+  ],
+  "team_adoption": "C draft only; no A/B agreement or multi-agent protocol adoption observed",
+  "catalog_identity": [
+    {
+      "collection": "jobs",
+      "a_labels_by_index": [
+        "탐정",
+        "배우",
+        "사업가",
+        "사기꾼",
+        "교수",
+        "대령",
+        "의사",
+        "상속인",
+        "기술자",
+        "요리사",
+        "차장",
+        "기자"
+      ],
+      "b_labels_by_index": [
+        "탐정",
+        "배우",
+        "사업가",
+        "사기꾼",
+        "교수",
+        "대령",
+        "의사",
+        "상속인",
+        "기술자",
+        "요리사",
+        "차장",
+        "기자"
+      ],
+      "c_id_names": [
+        {
+          "id": 0,
+          "name": "탐정"
+        },
+        {
+          "id": 1,
+          "name": "배우"
+        },
+        {
+          "id": 2,
+          "name": "사업가"
+        },
+        {
+          "id": 3,
+          "name": "사기꾼"
+        },
+        {
+          "id": 4,
+          "name": "교수"
+        },
+        {
+          "id": 5,
+          "name": "대령"
+        },
+        {
+          "id": 6,
+          "name": "의사"
+        },
+        {
+          "id": 7,
+          "name": "상속인"
+        },
+        {
+          "id": 8,
+          "name": "기술자"
+        },
+        {
+          "id": 9,
+          "name": "요리사"
+        },
+        {
+          "id": 10,
+          "name": "차장"
+        },
+        {
+          "id": 11,
+          "name": "기자"
+        }
+      ],
+      "same_ids_and_labels": true,
+      "scope": "catalog identity only; no skill/personality/rule equivalence claim"
+    },
+    {
+      "collection": "suspects",
+      "a_labels_by_index": [
+        "알렉스 누아르 (탐정)",
+        "케이시 스칼렛 (배우)",
+        "에이버리 재스퍼 (사업가)",
+        "로언 앰버 (사기꾼)",
+        "라일리 올리브 (교수)",
+        "다코타 네이비 (대령)",
+        "케이시 더블루 (의사)",
+        "바이올렛 모레티 (상속인)",
+        "캐머런 펄 (기술자)",
+        "캉디드 블랑슈 (요리사)",
+        "퀸 슬레이트 (차장)",
+        "파커 에보니 (기자)"
+      ],
+      "b_labels_by_index": [
+        "알렉스 누아르 (탐정)",
+        "케이시 스칼렛 (배우)",
+        "에이버리 재스퍼 (사업가)",
+        "로언 앰버 (사기꾼)",
+        "라일리 올리브 (교수)",
+        "다코타 네이비 (대령)",
+        "케이시 더블루 (의사)",
+        "바이올렛 모레티 (상속인)",
+        "캐머런 펄 (기술자)",
+        "캉디드 블랑슈 (요리사)",
+        "퀸 슬레이트 (차장)",
+        "파커 에보니 (기자)"
+      ],
+      "c_id_names": [
+        {
+          "id": 0,
+          "name": "알렉스 누아르 (탐정)"
+        },
+        {
+          "id": 1,
+          "name": "케이시 스칼렛 (배우)"
+        },
+        {
+          "id": 2,
+          "name": "에이버리 재스퍼 (사업가)"
+        },
+        {
+          "id": 3,
+          "name": "로언 앰버 (사기꾼)"
+        },
+        {
+          "id": 4,
+          "name": "라일리 올리브 (교수)"
+        },
+        {
+          "id": 5,
+          "name": "다코타 네이비 (대령)"
+        },
+        {
+          "id": 6,
+          "name": "케이시 더블루 (의사)"
+        },
+        {
+          "id": 7,
+          "name": "바이올렛 모레티 (상속인)"
+        },
+        {
+          "id": 8,
+          "name": "캐머런 펄 (기술자)"
+        },
+        {
+          "id": 9,
+          "name": "캉디드 블랑슈 (요리사)"
+        },
+        {
+          "id": 10,
+          "name": "퀸 슬레이트 (차장)"
+        },
+        {
+          "id": 11,
+          "name": "파커 에보니 (기자)"
+        }
+      ],
+      "same_ids_and_labels": true,
+      "scope": "catalog identity only; no skill/personality/rule equivalence claim"
+    },
+    {
+      "collection": "weapons",
+      "a_labels_by_index": [
+        "골동품 단검",
+        "유리 조각",
+        "드라이버",
+        "만년필",
+        "편지칼",
+        "식칼",
+        "총검",
+        "머리핀"
+      ],
+      "b_labels_by_index": [
+        "골동품 단검",
+        "유리 조각",
+        "드라이버",
+        "만년필",
+        "편지칼",
+        "식칼",
+        "총검",
+        "머리핀"
+      ],
+      "c_id_names": [
+        {
+          "id": 0,
+          "name": "골동품 단검"
+        },
+        {
+          "id": 1,
+          "name": "유리 조각"
+        },
+        {
+          "id": 2,
+          "name": "드라이버"
+        },
+        {
+          "id": 3,
+          "name": "만년필"
+        },
+        {
+          "id": 4,
+          "name": "편지칼"
+        },
+        {
+          "id": 5,
+          "name": "식칼"
+        },
+        {
+          "id": 6,
+          "name": "총검"
+        },
+        {
+          "id": 7,
+          "name": "머리핀"
+        }
+      ],
+      "same_ids_and_labels": true,
+      "scope": "catalog identity only; no skill/personality/rule equivalence claim"
+    },
+    {
+      "collection": "places",
+      "a_labels_by_index": [
+        "라운지 칸",
+        "침대 칸",
+        "식당 칸",
+        "주방 칸",
+        "수하물 칸",
+        "금고 칸",
+        "전망 칸",
+        "기관실"
+      ],
+      "b_labels_by_index": [
+        "라운지 칸",
+        "침대 칸",
+        "식당 칸",
+        "주방 칸",
+        "수하물 칸",
+        "금고 칸",
+        "전망 칸",
+        "기관실"
+      ],
+      "c_id_names": [
+        {
+          "id": 0,
+          "name": "라운지 칸"
+        },
+        {
+          "id": 1,
+          "name": "침대 칸"
+        },
+        {
+          "id": 2,
+          "name": "식당 칸"
+        },
+        {
+          "id": 3,
+          "name": "주방 칸"
+        },
+        {
+          "id": 4,
+          "name": "수하물 칸"
+        },
+        {
+          "id": 5,
+          "name": "금고 칸"
+        },
+        {
+          "id": 6,
+          "name": "전망 칸"
+        },
+        {
+          "id": 7,
+          "name": "기관실"
+        }
+      ],
+      "same_ids_and_labels": true,
+      "scope": "catalog identity only; no skill/personality/rule equivalence claim"
+    }
+  ],
+  "all_catalog_ids_and_labels_match": true,
+  "action_body_roundtrips": [
+    {
+      "text": "식당 칸으로 이동한다",
+      "b_native_intent": {
+        "kind": "move",
+        "place": 2
+      },
+      "c_action_request": {
+        "game_id": "8a0wLvSgRd6t3xLFaRqEDa5Gre36OYIx",
+        "agent_id": "probe_player",
+        "action_id": "language-move",
+        "cycle_id": 1,
+        "phase": "movement",
+        "phase_epoch": 1,
+        "action": "move",
+        "payload": {
+          "room": 2
+        },
+        "task_id": "8a0wLvSgRd6t3xLFaRqEDa5Gre36OYIx:1:probe_player"
+      },
+      "context_origin": "explicit test harness values; not native engine phase or actor identity",
+      "a_validated_intent": {
+        "kind": "move",
+        "place": 2
+      },
+      "command_body_roundtrip_equal": true,
+      "scope": "command fields only; phase enforcement and accusation consequences are not equivalent"
+    },
+    {
+      "text": "질문을 정리한다",
+      "b_native_intent": {
+        "kind": "prepare"
+      },
+      "c_action_request": {
+        "game_id": "8a0wLvSgRd6t3xLFaRqEDa5Gre36OYIx",
+        "agent_id": "probe_player",
+        "action_id": "language-prepare",
+        "cycle_id": 1,
+        "phase": "interaction",
+        "phase_epoch": 2,
+        "action": "prepare",
+        "payload": {},
+        "task_id": "8a0wLvSgRd6t3xLFaRqEDa5Gre36OYIx:2:probe_player"
+      },
+      "context_origin": "explicit test harness values; not native engine phase or actor identity",
+      "a_validated_intent": {
+        "kind": "prepare"
+      },
+      "command_body_roundtrip_equal": true,
+      "scope": "command fields only; phase enforcement and accusation consequences are not equivalent"
+    },
+    {
+      "text": "범인은 케이시 스칼렛 (배우), 흉기는 골동품 단검, 범행 장소는 식당 칸",
+      "b_native_intent": {
+        "kind": "accuse",
+        "suspect": 1,
+        "weapon": 0,
+        "place": 2
+      },
+      "c_action_request": {
+        "game_id": "8a0wLvSgRd6t3xLFaRqEDa5Gre36OYIx",
+        "agent_id": "probe_player",
+        "action_id": "language-accuse",
+        "cycle_id": 1,
+        "phase": "deduction",
+        "phase_epoch": 3,
+        "action": "accuse",
+        "payload": {
+          "suspect": 1,
+          "weapon": 0,
+          "place": 2
+        },
+        "task_id": "8a0wLvSgRd6t3xLFaRqEDa5Gre36OYIx:3:probe_player"
+      },
+      "context_origin": "explicit test harness values; not native engine phase or actor identity",
+      "a_validated_intent": {
+        "kind": "accuse",
+        "suspect": 1,
+        "weapon": 0,
+        "place": 2
+      },
+      "command_body_roundtrip_equal": true,
+      "scope": "command fields only; phase enforcement and accusation consequences are not equivalent"
+    }
+  ],
+  "acquired_information_roundtrips": [
+    {
+      "a_acquired_clue": {
+        "id": "suspect:0",
+        "category": "suspect",
+        "index": 0,
+        "text": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+        "source": "식당 칸",
+        "turn": 3
+      },
+      "c_projection": {
+        "information": {
+          "id": "suspect:0",
+          "category": "suspect",
+          "excluded_id": 0,
+          "text": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다."
+        },
+        "legacy_metadata": {
+          "source": "식당 칸",
+          "turn_cost": 3
+        }
+      },
+      "legacy_roundtrip_equal": true,
+      "meaning": "excluded from the indicated candidate category; not identified as culprit"
+    },
+    {
+      "a_acquired_clue": {
+        "id": "suspect:8",
+        "category": "suspect",
+        "index": 8,
+        "text": "사건 시각의 기록을 대조하면 캐머런 펄 (기술자)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+        "source": "식당 칸",
+        "turn": 3
+      },
+      "c_projection": {
+        "information": {
+          "id": "suspect:8",
+          "category": "suspect",
+          "excluded_id": 8,
+          "text": "사건 시각의 기록을 대조하면 캐머런 펄 (기술자)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다."
+        },
+        "legacy_metadata": {
+          "source": "식당 칸",
+          "turn_cost": 3
+        }
+      },
+      "legacy_roundtrip_equal": true,
+      "meaning": "excluded from the indicated candidate category; not identified as culprit"
+    }
+  ],
+  "native_information_flow": [
+    {
+      "b_intent": {
+        "kind": "move",
+        "place": 2
+      },
+      "a_pending": null,
+      "new_clue_ids": [],
+      "c_normalized_information": [],
+      "native_engine_completion_event": false
+    },
+    {
+      "b_intent": {
+        "kind": "prepare"
+      },
+      "a_pending": null,
+      "new_clue_ids": [],
+      "c_normalized_information": [],
+      "native_engine_completion_event": false
+    },
+    {
+      "b_intent": {
+        "kind": "check",
+        "target": null,
+        "approach": "compassion"
+      },
+      "a_pending": {
+        "purpose": "investigate",
+        "action": "이곳의 기록을 조사한다",
+        "target": null,
+        "room": 2,
+        "approach": "compassion",
+        "dice": 3,
+        "prepared": true,
+        "expert": true
+      },
+      "new_clue_ids": [],
+      "c_normalized_information": [],
+      "native_engine_completion_event": false
+    },
+    {
+      "b_intent": {
+        "kind": "roll"
+      },
+      "a_pending": null,
+      "new_clue_ids": [
+        "suspect:0",
+        "suspect:8"
+      ],
+      "c_normalized_information": [
+        {
+          "id": "suspect:0",
+          "category": "suspect",
+          "excluded_id": 0,
+          "text": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다."
+        },
+        {
+          "id": "suspect:8",
+          "category": "suspect",
+          "excluded_id": 8,
+          "text": "사건 시각의 기록을 대조하면 캐머런 펄 (기술자)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다."
+        }
+      ],
+      "native_engine_completion_event": false
+    }
+  ],
+  "boundaries": {
+    "context_origin": "explicit test harness values; not native engine phase or actor identity",
+    "dice": "fixed sixes supplied to real A function",
+    "live_llm": false,
+    "native_multi_agent_protocol": false,
+    "native_http_accepts_structured_intent": false,
+    "native_gm_completion_event": false,
+    "hidden_truth_or_undiscovered_clues_in_output": false
+  },
+  "requires_explicit_agreement": [
+    "game_id / agent_id / action_id / task_id correlation and ID namespaces",
+    "cycle_id / phase / phase_epoch versus legacy turn cost",
+    "question/explore/examine_corpse as one completed action versus check + roll",
+    "same private result to requesting player and supervisory GM; explicit publication separate",
+    "actor mode active/npc/corpse, technical failure, deduction death and end reason",
+    "authoritative catalog skill/stat/personality/optional-goal definitions"
+  ]
+}
