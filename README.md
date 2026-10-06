@@ -4,6 +4,8 @@
 
 GM은 캐릭터 조합 배분, 이동→탐문·탐색→추리 턴 진행, 상황 안내, 정보 소유 원장, 장애 처리와 대리 GM 전환을 담당한다. 플레이어 행동은 GM을 경유하지 않고 엔진에 직접 요청한다. 공식 상태·주사위·권한·중복 행동 방지는 엔진이 처리한다.
 
+사용자의 직접 개발 범위는 GM 및 GM↔agent의 안내·수신·조정이다. 엔진과 agent 내부 구현은 각 담당자가 제공하며 GM 측 어댑터로 연결한다. `ROLE_TASKS_20261006.md`는 역할별 선결 조건과 이 개발 경계를 기록한다. 에이전트 간 상호작용은 해당 문서의 기존 권고 흐름을 작업 전제로 사용한다.
+
 ## 실행
 
 워크스페이스 루트에서 Python 3.10 이상으로 실행한다. 실행과 테스트에는 외부 패키지나 LLM 연결이 필요 없다.
@@ -41,7 +43,7 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `INTEGRATION_STATUS_20261006.md` | 실제 팀 코드·HTTP 연결 시도와 전체 GM 연결의 차단 사유 |
 | `team_adapters.py` / `integration_probe.py` | 실제 A/B 데모 함수 연결 및 native 서버 점검 |
 | `SHARED_LANGUAGE_20261006.md` | A/B/C 필드 의미 대조와 팀 공통 메시지의 연결 기준 |
-| `ROLE_TASKS_20261006.md` | 역할별 추가 작업·우선순위·에이전트 간 상호작용 지침 |
+| `ROLE_TASKS_20261006.md` | 역할별 추가 작업·선결 조건·개발 범위·상호작용 전제 |
 | `message_language.py` / `language_probe.py` | 실제 명령·단서의 의미 보존 변환 및 재검사 |
 | `io_schema.json` | JSON 입출력의 형식 명세 |
 | `examples/` | 실제 모의 실행에서 생성한 입출력·결과 |
