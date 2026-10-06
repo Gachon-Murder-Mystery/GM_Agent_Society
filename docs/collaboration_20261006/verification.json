@@ -1,0 +1,38 @@
+{
+  "scope": "document content, task coverage, DOCX structure and source text preservation",
+  "records": [
+    {
+      "document": "A_engine_proposal.docx",
+      "task_rows": {
+        "A": 12
+      },
+      "source_paragraphs_preserved": true,
+      "docx_zip_and_xml_valid": true
+    },
+    {
+      "document": "B_agent_proposal.docx",
+      "task_rows": {
+        "B": 10
+      },
+      "source_paragraphs_preserved": true,
+      "docx_zip_and_xml_valid": true
+    },
+    {
+      "document": "GM_common_proposal.docx",
+      "task_rows": {
+        "C": 8,
+        "D": 8
+      },
+      "source_paragraphs_preserved": true,
+      "docx_zip_and_xml_valid": true
+    }
+  ],
+  "total_task_rows": 38,
+  "runtime_game_checks_rerun": false,
+  "messages_sent": false,
+  "native_word_rendering": {
+    "completed": false,
+    "reason": "Word automation did not complete; no native page preview generated",
+    "preview_helpers_stopped": true
+  }
+}

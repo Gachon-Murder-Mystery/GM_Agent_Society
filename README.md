@@ -44,6 +44,8 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `team_adapters.py` / `integration_probe.py` | 실제 A/B 데모 함수 연결 및 native 서버 점검 |
 | `SHARED_LANGUAGE_20261006.md` | A/B/C 필드 의미 대조와 팀 공통 메시지의 연결 기준 |
 | `ROLE_TASKS_20261006.md` | 역할별 추가 작업·선결 조건·개발 범위·상호작용 전제 |
+| `docs/collaboration_20261006/` | 엔진·agent 담당자별 제안서 및 GM 진행/공통 협의 문서, DOCX와 원문 |
+| `build_collaboration_documents.py` | 협의 문서 원문에서 전달용 DOCX 재생성 |
 | `message_language.py` / `language_probe.py` | 실제 명령·단서의 의미 보존 변환 및 재검사 |
 | `io_schema.json` | JSON 입출력의 형식 명세 |
 | `examples/` | 실제 모의 실행에서 생성한 입출력·결과 |
