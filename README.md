@@ -41,6 +41,7 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `INTEGRATION_STATUS_20261006.md` | 실제 팀 코드·HTTP 연결 시도와 전체 GM 연결의 차단 사유 |
 | `team_adapters.py` / `integration_probe.py` | 실제 A/B 데모 함수 연결 및 native 서버 점검 |
 | `SHARED_LANGUAGE_20261006.md` | A/B/C 필드 의미 대조와 팀 공통 메시지의 연결 기준 |
+| `ROLE_TASKS_20261006.md` | 역할별 추가 작업·우선순위·에이전트 간 상호작용 지침 |
 | `message_language.py` / `language_probe.py` | 실제 명령·단서의 의미 보존 변환 및 재검사 |
 | `io_schema.json` | JSON 입출력의 형식 명세 |
 | `examples/` | 실제 모의 실행에서 생성한 입출력·결과 |
