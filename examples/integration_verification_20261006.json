@@ -1,0 +1,43 @@
+{
+  "verified_at_utc": "2026-10-06T12:04:43.140203+00:00",
+  "scope": "actual A/B legacy components and HTTP; not full multi-agent GM integration",
+  "repository_commits": {
+    "A_engine": "dca35b989249bf1fc7e52ca404805b73e0a52648",
+    "B_reasoning": "24eeeb1e6154de3d1a9cd3d891f3479112a9d2c1"
+  },
+  "user_confirmation": {
+    "remote_main_is_current": true,
+    "development_may_be_in_progress": true,
+    "refresh_trigger": "user reports a repository update"
+  },
+  "tests_executed": {
+    "command": "python -m unittest gm_coordinator.test_team_adapters gm_coordinator.test_coordinator -v",
+    "native_adapter_tests": 6,
+    "existing_mock_coordinator_tests": 22,
+    "total": 28,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "native_function_execution": {
+    "real_B_interpreter": true,
+    "real_A_engine_functions": true,
+    "C_receipt_record": true,
+    "clues_received": 2,
+    "dice": "fixed sixes through native rng argument"
+  },
+  "native_HTTP_execution": {
+    "requests_completed": true,
+    "same_action_id_double_effect_observed": true,
+    "caller_phase_ignored_for_movement_observed": true,
+    "server_stopped": true,
+    "port_closed": true
+  },
+  "full_GM_integration": "blocked_before_game_creation",
+  "autonomous_B_loop": "not_present_in_current_snapshot",
+  "native_multi_agent_cycle": "not_performed",
+  "live_LLM": "not_performed",
+  "native_failure_succession": "not_performed",
+  "team_repository_source_edits": false,
+  "remote_writes": false
+}

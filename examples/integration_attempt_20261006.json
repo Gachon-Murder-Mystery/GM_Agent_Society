@@ -1,0 +1,3701 @@
+{
+  "checked_at_utc": "2026-10-06T12:00:24.599935+00:00",
+  "repositories": [
+    {
+      "role": "A_engine",
+      "path": "C:\\Users\\GC\\OneDrive\\graduate school\\3rd\\최신 인공지능\\Game-engine",
+      "branch": "main",
+      "commit": "dca35b989249bf1fc7e52ca404805b73e0a52648",
+      "tracked_worktree_clean": true
+    },
+    {
+      "role": "B_reasoning",
+      "path": "C:\\Users\\GC\\OneDrive\\graduate school\\3rd\\최신 인공지능\\Agent_Reasoning",
+      "branch": "main",
+      "commit": "24eeeb1e6154de3d1a9cd3d891f3479112a9d2c1",
+      "tracked_worktree_clean": true
+    }
+  ],
+  "engine_capabilities": {
+    "native_functions": [
+      "new_game",
+      "apply",
+      "public",
+      "validate_intent"
+    ],
+    "required_engine_port_methods": [
+      "catalog",
+      "create_game",
+      "gm_snapshot",
+      "agent_snapshot",
+      "events_after",
+      "submit_action",
+      "share_information",
+      "advance_phase",
+      "convert_fault",
+      "take_over",
+      "finish"
+    ],
+    "native_engine_port_methods_present": [],
+    "native_engine_port_methods_missing": [
+      "catalog",
+      "create_game",
+      "gm_snapshot",
+      "agent_snapshot",
+      "events_after",
+      "submit_action",
+      "share_information",
+      "advance_phase",
+      "convert_fault",
+      "take_over",
+      "finish"
+    ],
+    "bridge_scope": "single-player native functions and provisional catalog normalization",
+    "full_gm_compatible": false
+  },
+  "reasoning_capabilities": {
+    "native_interpreter": "Zen.intent(g, text)",
+    "mode": "offline_rule_parser",
+    "native_narrator": "Zen.narrate(g, text, result)",
+    "player_port_methods_missing": [
+      "choose_action",
+      "receive_result"
+    ],
+    "autonomous_player_loop_verified": false,
+    "live_llm_calls": false
+  },
+  "full_gm_attachment": {
+    "attempted": true,
+    "status": "blocked",
+    "blocked_call": "create_game",
+    "reason": "A exposes new_game(name, role, stat, goal), not an authoritative multi-player create_game/phase/observation/event contract. Full GM attachment is blocked before game creation.",
+    "missing_native_methods": [
+      "catalog",
+      "create_game",
+      "gm_snapshot",
+      "agent_snapshot",
+      "events_after",
+      "submit_action",
+      "share_information",
+      "advance_phase",
+      "convert_fault",
+      "take_over",
+      "finish"
+    ],
+    "game_created_by_full_attach": false,
+    "mock_substitution": false
+  },
+  "native_component_probe": {
+    "status": "single_actor_component_flow_executed",
+    "trace": [
+      {
+        "text": "식당 칸으로 이동한다",
+        "b_interpretation": {
+          "intent": {
+            "kind": "move",
+            "place": 2
+          },
+          "notice": null,
+          "input_keys": [
+            "name",
+            "role",
+            "pending",
+            "target"
+          ],
+          "input_source": "A public observation whitelist",
+          "mode": "offline_rule_parser"
+        },
+        "a_native_result": {
+          "record_type": "legacy_client_observation",
+          "source": "actual A apply/public functions",
+          "intent": {
+            "kind": "move",
+            "place": 2
+          },
+          "message": "식당 칸\n하얀 식탁보 위의 은식기가 열차의 진동에 부딪힙니다. 차장이 승객들을 모으고 있습니다.\n이곳에 있는 인물: 퀸 슬레이트 (차장)\n이곳의 자료를 조사하거나, 다른 칸으로 이동할 수 있습니다.",
+          "observation": {
+            "id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+            "name": "연동 점검 플레이어",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 1,
+            "prepared": false,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, 연동 점검 플레이어 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "연동 점검 플레이어 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ]
+          },
+          "acquired_clues": [],
+          "engine_completion_event": false
+        },
+        "c_observer_record": {
+          "game_id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+          "actor_id": "legacy_single_player",
+          "actor_id_source": "probe alias; A has no native agent_id",
+          "room": 2,
+          "information_ids": [],
+          "information": [],
+          "source": "actual A public observation; polled/client-received",
+          "engine_completion_event": false,
+          "official_phase_token": null
+        }
+      },
+      {
+        "text": "질문을 정리한다",
+        "b_interpretation": {
+          "intent": {
+            "kind": "prepare"
+          },
+          "notice": null,
+          "input_keys": [
+            "name",
+            "role",
+            "pending",
+            "target"
+          ],
+          "input_source": "A public observation whitelist",
+          "mode": "offline_rule_parser"
+        },
+        "a_native_result": {
+          "record_type": "legacy_client_observation",
+          "source": "actual A apply/public functions",
+          "intent": {
+            "kind": "prepare"
+          },
+          "message": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+          "observation": {
+            "id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+            "name": "연동 점검 플레이어",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 2,
+            "prepared": true,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, 연동 점검 플레이어 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "연동 점검 플레이어 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ]
+          },
+          "acquired_clues": [],
+          "engine_completion_event": false
+        },
+        "c_observer_record": {
+          "game_id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+          "actor_id": "legacy_single_player",
+          "actor_id_source": "probe alias; A has no native agent_id",
+          "room": 2,
+          "information_ids": [],
+          "information": [],
+          "source": "actual A public observation; polled/client-received",
+          "engine_completion_event": false,
+          "official_phase_token": null
+        }
+      },
+      {
+        "text": "이곳의 기록을 조사한다",
+        "b_interpretation": {
+          "intent": {
+            "kind": "check",
+            "target": null,
+            "approach": "compassion"
+          },
+          "notice": null,
+          "input_keys": [
+            "name",
+            "role",
+            "pending",
+            "target"
+          ],
+          "input_source": "A public observation whitelist",
+          "mode": "offline_rule_parser"
+        },
+        "a_native_result": {
+          "record_type": "legacy_client_observation",
+          "source": "actual A apply/public functions",
+          "intent": {
+            "kind": "check",
+            "approach": "compassion"
+          },
+          "message": "공감 판정을 요청합니다. 3d6을 굴려 2 초과인 주사위마다 성공 1개입니다. 같은 숫자는 실패입니다.\n준비: +1d · 전문성: +1d\n주사위를 굴리겠습니까?",
+          "observation": {
+            "id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+            "name": "연동 점검 플레이어",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 2,
+            "prepared": true,
+            "pending": {
+              "purpose": "investigate",
+              "action": "이곳의 기록을 조사한다",
+              "target": null,
+              "room": 2,
+              "approach": "compassion",
+              "dice": 3,
+              "prepared": true,
+              "expert": true
+            },
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, 연동 점검 플레이어 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "연동 점검 플레이어 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ]
+          },
+          "acquired_clues": [],
+          "engine_completion_event": false
+        },
+        "c_observer_record": {
+          "game_id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+          "actor_id": "legacy_single_player",
+          "actor_id_source": "probe alias; A has no native agent_id",
+          "room": 2,
+          "information_ids": [],
+          "information": [],
+          "source": "actual A public observation; polled/client-received",
+          "engine_completion_event": false,
+          "official_phase_token": null
+        }
+      },
+      {
+        "text": "굴린다",
+        "b_interpretation": {
+          "intent": {
+            "kind": "roll"
+          },
+          "notice": null,
+          "input_keys": [
+            "name",
+            "role",
+            "pending",
+            "target"
+          ],
+          "input_source": "A public observation whitelist",
+          "mode": "offline_rule_parser"
+        },
+        "a_native_result": {
+          "record_type": "legacy_client_observation",
+          "source": "actual A apply/public functions",
+          "intent": {
+            "kind": "roll"
+          },
+          "message": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.\n사건 시각의 기록을 대조하면 캉디드 블랑슈 (요리사)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.\n추가 효과: 조사 요령을 파악했습니다. 다음 판정에 준비 +1d를 받습니다.",
+          "observation": {
+            "id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+            "name": "연동 점검 플레이어",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 3,
+            "prepared": true,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, 연동 점검 플레이어 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              },
+              {
+                "kind": "roll",
+                "text": "주사위 [6, 6, 6] → 성공 3개",
+                "seq": 2,
+                "dice": [
+                  6,
+                  6,
+                  6
+                ],
+                "successes": 3
+              },
+              {
+                "kind": "clue",
+                "text": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+                "seq": 3,
+                "source": "식당 칸"
+              },
+              {
+                "kind": "clue",
+                "text": "사건 시각의 기록을 대조하면 캉디드 블랑슈 (요리사)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+                "seq": 4,
+                "source": "식당 칸"
+              }
+            ],
+            "clues": [
+              {
+                "id": "suspect:0",
+                "category": "suspect",
+                "index": 0,
+                "text": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+                "source": "식당 칸",
+                "turn": 3
+              },
+              {
+                "id": "suspect:9",
+                "category": "suspect",
+                "index": 9,
+                "text": "사건 시각의 기록을 대조하면 캉디드 블랑슈 (요리사)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+                "source": "식당 칸",
+                "turn": 3
+              }
+            ],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "연동 점검 플레이어 (탐정)",
+                  "excluded": true
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": true
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ]
+          },
+          "acquired_clues": [
+            {
+              "id": "suspect:0",
+              "category": "suspect",
+              "index": 0,
+              "text": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+              "source": "식당 칸",
+              "turn": 3
+            },
+            {
+              "id": "suspect:9",
+              "category": "suspect",
+              "index": 9,
+              "text": "사건 시각의 기록을 대조하면 캉디드 블랑슈 (요리사)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+              "source": "식당 칸",
+              "turn": 3
+            }
+          ],
+          "engine_completion_event": false
+        },
+        "c_observer_record": {
+          "game_id": "YwiRIwcw5eqLIm9AYDRqWcLK_CybiJOs",
+          "actor_id": "legacy_single_player",
+          "actor_id_source": "probe alias; A has no native agent_id",
+          "room": 2,
+          "information_ids": [
+            "suspect:0",
+            "suspect:9"
+          ],
+          "information": [
+            {
+              "id": "suspect:0",
+              "category": "suspect",
+              "index": 0,
+              "text": "사건 시각의 기록을 대조하면 연동 점검 플레이어 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+              "source": "식당 칸",
+              "turn": 3
+            },
+            {
+              "id": "suspect:9",
+              "category": "suspect",
+              "index": 9,
+              "text": "사건 시각의 기록을 대조하면 캉디드 블랑슈 (요리사)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+              "source": "식당 칸",
+              "turn": 3
+            }
+          ],
+          "source": "actual A public observation; polled/client-received",
+          "engine_completion_event": false,
+          "official_phase_token": null
+        }
+      }
+    ],
+    "flow": "B native keyless intent -> A native validate/apply -> A public observation -> C receipt store",
+    "new_information_received_by_observer": true,
+    "dice_provider": "fixed sixes injected into native A rng argument for deterministic smoke test",
+    "autonomous_player": false,
+    "native_engine_events": false,
+    "three_phase_gameplay": false,
+    "multiple_agent_game": false,
+    "live_llm": false
+  },
+  "native_http_probe": {
+    "base_url": "http://127.0.0.1:64342",
+    "database": "C:\\Users\\GC\\OneDrive\\graduate school\\3rd\\최신 인공지능\\gm_coordinator\\.test_tmp\\native_http_5a9008a1dc224e91bf62f876249176b7\\native_engine.sqlite3",
+    "source": "C:\\Users\\GC\\OneDrive\\graduate school\\3rd\\최신 인공지능\\Game-engine\\app.py",
+    "database_scope": "isolated probe data; original demo/user game database is not used",
+    "calls": [
+      {
+        "endpoint": "/catalog",
+        "response": {
+          "http_status": 200,
+          "body": {
+            "suspects": [
+              "알렉스 누아르 (탐정)",
+              "케이시 스칼렛 (배우)",
+              "에이버리 재스퍼 (사업가)",
+              "로언 앰버 (사기꾼)",
+              "라일리 올리브 (교수)",
+              "다코타 네이비 (대령)",
+              "케이시 더블루 (의사)",
+              "바이올렛 모레티 (상속인)",
+              "캐머런 펄 (기술자)",
+              "캉디드 블랑슈 (요리사)",
+              "퀸 슬레이트 (차장)",
+              "파커 에보니 (기자)"
+            ],
+            "weapons": [
+              "골동품 단검",
+              "유리 조각",
+              "드라이버",
+              "만년필",
+              "편지칼",
+              "식칼",
+              "총검",
+              "머리핀"
+            ],
+            "places": [
+              "라운지 칸",
+              "침대 칸",
+              "식당 칸",
+              "주방 칸",
+              "수하물 칸",
+              "금고 칸",
+              "전망 칸",
+              "기관실"
+            ],
+            "jobs": [
+              "탐정",
+              "배우",
+              "사업가",
+              "사기꾼",
+              "교수",
+              "대령",
+              "의사",
+              "상속인",
+              "기술자",
+              "요리사",
+              "차장",
+              "기자"
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "/start",
+        "response": {
+          "http_status": 200,
+          "body": {
+            "id": "b4__awWxTQXST9ArB7sGYAMwfGmfnieB",
+            "name": "HTTP 연결 점검",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "라운지 칸",
+            "room": 0,
+            "target": null,
+            "turn": 0,
+            "prepared": false,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, HTTP 연결 점검 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": true,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": false,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "HTTP 연결 점검 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": false
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "/chat",
+        "b_interpretation": {
+          "intent": {
+            "kind": "move",
+            "place": 2
+          },
+          "notice": null,
+          "input_keys": [
+            "name",
+            "role",
+            "pending",
+            "target"
+          ],
+          "input_source": "A public observation whitelist",
+          "mode": "offline_rule_parser"
+        },
+        "submitted_phase": "interaction",
+        "response": {
+          "http_status": 200,
+          "body": {
+            "id": "b4__awWxTQXST9ArB7sGYAMwfGmfnieB",
+            "name": "HTTP 연결 점검",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 1,
+            "prepared": false,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, HTTP 연결 점검 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              },
+              {
+                "kind": "player",
+                "text": "식당 칸으로 이동한다",
+                "seq": 2
+              },
+              {
+                "kind": "gm",
+                "text": "식당 칸\n하얀 식탁보 위의 은식기가 열차의 진동에 부딪힙니다. 차장이 승객들을 모으고 있습니다.\n이곳에 있는 인물: 퀸 슬레이트 (차장)\n이곳의 자료를 조사하거나, 다른 칸으로 이동할 수 있습니다.",
+                "seq": 3
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "HTTP 연결 점검 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ],
+            "connection_notice": null,
+            "mode": "offline"
+          }
+        }
+      },
+      {
+        "endpoint": "/chat",
+        "probe": "same action_id twice",
+        "first": {
+          "http_status": 200,
+          "body": {
+            "id": "b4__awWxTQXST9ArB7sGYAMwfGmfnieB",
+            "name": "HTTP 연결 점검",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 2,
+            "prepared": true,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, HTTP 연결 점검 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              },
+              {
+                "kind": "player",
+                "text": "식당 칸으로 이동한다",
+                "seq": 2
+              },
+              {
+                "kind": "gm",
+                "text": "식당 칸\n하얀 식탁보 위의 은식기가 열차의 진동에 부딪힙니다. 차장이 승객들을 모으고 있습니다.\n이곳에 있는 인물: 퀸 슬레이트 (차장)\n이곳의 자료를 조사하거나, 다른 칸으로 이동할 수 있습니다.",
+                "seq": 3
+              },
+              {
+                "kind": "player",
+                "text": "질문을 정리한다",
+                "seq": 4
+              },
+              {
+                "kind": "gm",
+                "text": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+                "seq": 5
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "HTTP 연결 점검 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ],
+            "connection_notice": null,
+            "mode": "offline"
+          }
+        },
+        "second": {
+          "http_status": 200,
+          "body": {
+            "id": "b4__awWxTQXST9ArB7sGYAMwfGmfnieB",
+            "name": "HTTP 연결 점검",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 3,
+            "prepared": true,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, HTTP 연결 점검 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              },
+              {
+                "kind": "player",
+                "text": "식당 칸으로 이동한다",
+                "seq": 2
+              },
+              {
+                "kind": "gm",
+                "text": "식당 칸\n하얀 식탁보 위의 은식기가 열차의 진동에 부딪힙니다. 차장이 승객들을 모으고 있습니다.\n이곳에 있는 인물: 퀸 슬레이트 (차장)\n이곳의 자료를 조사하거나, 다른 칸으로 이동할 수 있습니다.",
+                "seq": 3
+              },
+              {
+                "kind": "player",
+                "text": "질문을 정리한다",
+                "seq": 4
+              },
+              {
+                "kind": "gm",
+                "text": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+                "seq": 5
+              },
+              {
+                "kind": "player",
+                "text": "질문을 정리한다",
+                "seq": 6
+              },
+              {
+                "kind": "gm",
+                "text": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+                "seq": 7
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "HTTP 연결 점검 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ],
+            "connection_notice": null,
+            "mode": "offline"
+          }
+        }
+      },
+      {
+        "endpoint": "/chat -> /roll",
+        "check": {
+          "http_status": 200,
+          "body": {
+            "id": "b4__awWxTQXST9ArB7sGYAMwfGmfnieB",
+            "name": "HTTP 연결 점검",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 3,
+            "prepared": true,
+            "pending": {
+              "purpose": "investigate",
+              "action": "이곳의 기록을 조사한다",
+              "target": null,
+              "room": 2,
+              "approach": "compassion",
+              "dice": 3,
+              "prepared": true,
+              "expert": true
+            },
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, HTTP 연결 점검 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              },
+              {
+                "kind": "player",
+                "text": "식당 칸으로 이동한다",
+                "seq": 2
+              },
+              {
+                "kind": "gm",
+                "text": "식당 칸\n하얀 식탁보 위의 은식기가 열차의 진동에 부딪힙니다. 차장이 승객들을 모으고 있습니다.\n이곳에 있는 인물: 퀸 슬레이트 (차장)\n이곳의 자료를 조사하거나, 다른 칸으로 이동할 수 있습니다.",
+                "seq": 3
+              },
+              {
+                "kind": "player",
+                "text": "질문을 정리한다",
+                "seq": 4
+              },
+              {
+                "kind": "gm",
+                "text": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+                "seq": 5
+              },
+              {
+                "kind": "player",
+                "text": "질문을 정리한다",
+                "seq": 6
+              },
+              {
+                "kind": "gm",
+                "text": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+                "seq": 7
+              },
+              {
+                "kind": "player",
+                "text": "이곳의 기록을 조사한다",
+                "seq": 8
+              },
+              {
+                "kind": "gm",
+                "text": "공감 판정을 요청합니다. 3d6을 굴려 2 초과인 주사위마다 성공 1개입니다. 같은 숫자는 실패입니다.\n준비: +1d · 전문성: +1d\n주사위를 굴리겠습니까?",
+                "seq": 9
+              }
+            ],
+            "clues": [],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "HTTP 연결 점검 (탐정)",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ],
+            "connection_notice": null,
+            "mode": "offline"
+          }
+        },
+        "roll": {
+          "http_status": 200,
+          "body": {
+            "id": "b4__awWxTQXST9ArB7sGYAMwfGmfnieB",
+            "name": "HTTP 연결 점검",
+            "job": "탐정",
+            "stat": 2,
+            "goal": "비밀 지키기",
+            "location": "식당 칸",
+            "room": 2,
+            "target": null,
+            "turn": 4,
+            "prepared": false,
+            "pending": null,
+            "ended": false,
+            "won": false,
+            "wrong": 0,
+            "messages": [
+              {
+                "kind": "gm",
+                "text": "오네이트 익스프레스에 오신 것을 환영합니다, HTTP 연결 점검 님. 당신은 탐정입니다. 저녁 식사 자리에서 재력가 모건 골드는 금고에 보관된 자신의 재산을 자랑했고, 승객들의 표정은 싸늘해졌습니다.\n\n자정이 지나자 날카로운 비명이 복도를 가릅니다. 모건 골드가 숨진 채 발견되었습니다. 몸통에는 여러 자창이 있고, 시신을 다른 장소에서 옮긴 흔적이 보입니다. 차장 퀸이 말합니다. “열차 안에 범인이 있습니다. 도와주시겠습니까?”\n\n지금 당신은 라운지 칸에 서 있습니다. 누구에게 말을 걸거나, 어디부터 살펴보겠습니까?",
+                "seq": 1
+              },
+              {
+                "kind": "player",
+                "text": "식당 칸으로 이동한다",
+                "seq": 2
+              },
+              {
+                "kind": "gm",
+                "text": "식당 칸\n하얀 식탁보 위의 은식기가 열차의 진동에 부딪힙니다. 차장이 승객들을 모으고 있습니다.\n이곳에 있는 인물: 퀸 슬레이트 (차장)\n이곳의 자료를 조사하거나, 다른 칸으로 이동할 수 있습니다.",
+                "seq": 3
+              },
+              {
+                "kind": "player",
+                "text": "질문을 정리한다",
+                "seq": 4
+              },
+              {
+                "kind": "gm",
+                "text": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+                "seq": 5
+              },
+              {
+                "kind": "player",
+                "text": "질문을 정리한다",
+                "seq": 6
+              },
+              {
+                "kind": "gm",
+                "text": "당신은 관찰 내용과 질문을 정리합니다. 다음 판정에 준비 보너스 +1d를 받습니다. 준비는 한 번만 적용됩니다.",
+                "seq": 7
+              },
+              {
+                "kind": "player",
+                "text": "이곳의 기록을 조사한다",
+                "seq": 8
+              },
+              {
+                "kind": "gm",
+                "text": "공감 판정을 요청합니다. 3d6을 굴려 2 초과인 주사위마다 성공 1개입니다. 같은 숫자는 실패입니다.\n준비: +1d · 전문성: +1d\n주사위를 굴리겠습니까?",
+                "seq": 9
+              },
+              {
+                "kind": "player",
+                "text": "주사위를 굴린다",
+                "seq": 10
+              },
+              {
+                "kind": "roll",
+                "text": "주사위 [1, 4, 5] → 성공 2개",
+                "seq": 11,
+                "dice": [
+                  1,
+                  4,
+                  5
+                ],
+                "successes": 2
+              },
+              {
+                "kind": "clue",
+                "text": "사건 시각의 기록을 대조하면 HTTP 연결 점검 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+                "seq": 12,
+                "source": "식당 칸"
+              },
+              {
+                "kind": "gm",
+                "text": "사건 시각의 기록을 대조하면 HTTP 연결 점검 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+                "seq": 13
+              }
+            ],
+            "clues": [
+              {
+                "id": "suspect:0",
+                "category": "suspect",
+                "index": 0,
+                "text": "사건 시각의 기록을 대조하면 HTTP 연결 점검 (탐정)의 알리바이가 확인됩니다. 범인 후보에서 제외합니다.",
+                "source": "식당 칸",
+                "turn": 4
+              }
+            ],
+            "npcs": [
+              {
+                "id": 1,
+                "name": "케이시 스칼렛 (배우)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "불안한 웃음 뒤에 감정을 감춘다",
+                "background": "스캔들을 피해 도망치는 젊은 배우"
+              },
+              {
+                "id": 2,
+                "name": "에이버리 재스퍼 (사업가)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "손익을 따지며 조심스럽게 답한다",
+                "background": "수상한 거래에 관여하는 자본가"
+              },
+              {
+                "id": 3,
+                "name": "로언 앰버 (사기꾼)",
+                "location": "수하물 칸",
+                "here": false,
+                "personality": "농담으로 질문을 돌린다",
+                "background": "사기 전력이 있는 협잡꾼"
+              },
+              {
+                "id": 4,
+                "name": "라일리 올리브 (교수)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "관찰한 내용을 차분히 설명한다",
+                "background": "음산한 평판을 가진 과학자"
+              },
+              {
+                "id": 5,
+                "name": "다코타 네이비 (대령)",
+                "location": "라운지 칸",
+                "here": false,
+                "personality": "단정하고 직설적으로 말한다",
+                "background": "엄격한 성격의 퇴역 장교"
+              },
+              {
+                "id": 6,
+                "name": "케이시 더블루 (의사)",
+                "location": "침대 칸",
+                "here": false,
+                "personality": "상태를 꼼꼼히 살피며 말한다",
+                "background": "비밀스러운 이중생활을 하는 유명 외과의사"
+              },
+              {
+                "id": 7,
+                "name": "바이올렛 모레티 (상속인)",
+                "location": "금고 칸",
+                "here": false,
+                "personality": "품위를 지키며 날카롭게 되묻는다",
+                "background": "많은 비밀을 간직한 부유한 미망인"
+              },
+              {
+                "id": 8,
+                "name": "캐머런 펄 (기술자)",
+                "location": "기관실",
+                "here": false,
+                "personality": "손끝에 묻은 기름을 닦으며 생각한다",
+                "background": "기묘한 연구 프로젝트를 진행하는 발명가"
+              },
+              {
+                "id": 9,
+                "name": "캉디드 블랑슈 (요리사)",
+                "location": "주방 칸",
+                "here": false,
+                "personality": "거친 말투 속에 걱정이 묻어난다",
+                "background": "불같은 성격의 요리사"
+              },
+              {
+                "id": 10,
+                "name": "퀸 슬레이트 (차장)",
+                "location": "식당 칸",
+                "here": true,
+                "personality": "예의를 지키며 승객을 진정시킨다",
+                "background": "친절하지만 미스터리한 과거를 가진 열차 직원"
+              },
+              {
+                "id": 11,
+                "name": "파커 에보니 (기자)",
+                "location": "전망 칸",
+                "here": false,
+                "personality": "질문을 메모하며 말을 이어간다",
+                "background": "세부사항을 놓치지 않는 예리한 기자"
+              }
+            ],
+            "board": {
+              "suspect": [
+                {
+                  "id": 0,
+                  "name": "HTTP 연결 점검 (탐정)",
+                  "excluded": true
+                },
+                {
+                  "id": 1,
+                  "name": "케이시 스칼렛 (배우)",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "에이버리 재스퍼 (사업가)",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "로언 앰버 (사기꾼)",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "라일리 올리브 (교수)",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "다코타 네이비 (대령)",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "케이시 더블루 (의사)",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "바이올렛 모레티 (상속인)",
+                  "excluded": false
+                },
+                {
+                  "id": 8,
+                  "name": "캐머런 펄 (기술자)",
+                  "excluded": false
+                },
+                {
+                  "id": 9,
+                  "name": "캉디드 블랑슈 (요리사)",
+                  "excluded": false
+                },
+                {
+                  "id": 10,
+                  "name": "퀸 슬레이트 (차장)",
+                  "excluded": false
+                },
+                {
+                  "id": 11,
+                  "name": "파커 에보니 (기자)",
+                  "excluded": false
+                }
+              ],
+              "weapon": [
+                {
+                  "id": 0,
+                  "name": "골동품 단검",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "유리 조각",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "드라이버",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "만년필",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "편지칼",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "식칼",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "총검",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "머리핀",
+                  "excluded": false
+                }
+              ],
+              "place": [
+                {
+                  "id": 0,
+                  "name": "라운지 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 1,
+                  "name": "침대 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 2,
+                  "name": "식당 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 3,
+                  "name": "주방 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 4,
+                  "name": "수하물 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 5,
+                  "name": "금고 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 6,
+                  "name": "전망 칸",
+                  "excluded": false
+                },
+                {
+                  "id": 7,
+                  "name": "기관실",
+                  "excluded": false
+                }
+              ]
+            },
+            "places": [
+              {
+                "id": 0,
+                "name": "라운지 칸",
+                "visited": true
+              },
+              {
+                "id": 1,
+                "name": "침대 칸",
+                "visited": false
+              },
+              {
+                "id": 2,
+                "name": "식당 칸",
+                "visited": true
+              },
+              {
+                "id": 3,
+                "name": "주방 칸",
+                "visited": false
+              },
+              {
+                "id": 4,
+                "name": "수하물 칸",
+                "visited": false
+              },
+              {
+                "id": 5,
+                "name": "금고 칸",
+                "visited": false
+              },
+              {
+                "id": 6,
+                "name": "전망 칸",
+                "visited": false
+              },
+              {
+                "id": 7,
+                "name": "기관실",
+                "visited": false
+              }
+            ],
+            "connection_notice": null,
+            "mode": "offline"
+          }
+        }
+      }
+    ],
+    "live_llm": false,
+    "server_stopped": true,
+    "port_closed": true,
+    "caller_phase_field_did_not_block_movement": true,
+    "same_action_id_repeated_side_effect": true,
+    "observation_returned": true,
+    "native_http_has_structured_action_result": false,
+    "status": "native_http_executed_with_contract_gaps"
+  },
+  "summary": "Native single-actor components and HTTP can be used; agreed multi-agent GM contract cannot yet attach.",
+  "team_source_modified": false,
+  "remote_writes": false
+}

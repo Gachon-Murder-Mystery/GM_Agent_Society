@@ -38,6 +38,8 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `IO_CONTRACT.md` | 다음 연결 시 사용할 호출·메시지 계약 |
 | `SOURCE_RULES.md` | 룰북·데모·사용자 결정·임시 가정 구분 |
 | `TEAM_REPO_REVIEW_20261006.md` | A/B 저장소의 확인 커밋·기존 테스트·GM 연결 차이 |
+| `INTEGRATION_STATUS_20261006.md` | 실제 팀 코드·HTTP 연결 시도와 전체 GM 연결의 차단 사유 |
+| `team_adapters.py` / `integration_probe.py` | 실제 A/B 데모 함수 연결 및 native 서버 점검 |
 | `io_schema.json` | JSON 입출력의 형식 명세 |
 | `examples/` | 실제 모의 실행에서 생성한 입출력·결과 |
 
@@ -61,6 +63,8 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 이 결과는 로컬 모의 연동의 동작 확인이다. 실제 A/B 코드, 네트워크 장애, 운영체제의 프로세스 감시, 실시간 LLM 판단은 검증하지 않았다. `replace_failed_gm`과 `report_player_fault`는 연결 지점이며, 현재 시연에서는 장애를 명시적으로 주입한다. 카탈로그의 개인 목표는 배분만 구현했으며 서브 퀘스트의 달성·점수 판정은 엔진 연동 사항이다.
 
 동일 seed는 초기 사건·캐릭터 조합을 재현하지만, 병렬 행동의 도착 순서가 달라지면 주사위와 진행 결과도 달라질 수 있다. 비교·재현에는 seed뿐 아니라 이벤트 순서와 실행 조건도 보존해야 한다.
+
+실제 팀 저장소를 점검하려면 워크스페이스 루트에서 `python -m gm_coordinator.integration_probe`를 실행한다. 기본적으로 같은 상위 폴더의 `Game-engine`과 `Agent_Reasoning`을 읽는다. 경로가 다르면 `--engine-repo`와 `--agent-repo`로 지정한다. 기존 데모 함수와 HTTP 서버를 실제 실행하지만, 전체 GM 계약이 없으면 연결을 명시적으로 차단한다. 이 결과는 `demo.py`의 모의 실행 결과와 별도로 저장한다. 실시간 LLM과 자동 장애 감시는 실행하지 않는다.
 
 ## 출처와 라이선스
 
