@@ -27,6 +27,11 @@ def git(repository, *args):
 
 
 def native_component_probe(engine, reasoning, store):
+    if not reasoning.capabilities()["legacy_interpreter_available"]:
+        return {"status": "blocked_by_B_API_change", "reason": "B removed Zen.intent; new player adapter requires executable LLMAgent",
+                "trace": [], "new_information_received_by_observer": False,
+                "autonomous_player": False, "native_engine_events": False, "three_phase_gameplay": False,
+                "multiple_agent_game": False, "live_llm": False}
     engine.legacy_start()
     observer = LegacyGMObserver(store)
     trace = []
@@ -97,7 +102,8 @@ def native_http_probe(engine_repo, reasoning, work_dir):
             result["calls"].append({"endpoint": "/start", "response": start})
             game_id = start["body"]["id"]
             state = _request(base, "/state", {"id": game_id})["body"]
-            interpreted = reasoning.interpret("식당 칸으로 이동한다", state)
+            interpreted = reasoning.interpret("식당 칸으로 이동한다", state) if reasoning.capabilities()["legacy_interpreter_available"] else {
+                "status": "blocked_by_B_API_change", "intent": None}
             # Caller-supplied phase fields are not recognized by the old server.
             moved = _request(base, "/chat", {"id": game_id, "text": "식당 칸으로 이동한다", "key": "",
                                               "cycle_id": 1, "phase": "interaction", "phase_epoch": 2,
@@ -158,7 +164,7 @@ def run(engine_repo=None, agent_repo=None, include_http=True):
             "checked_at_utc": datetime.now(timezone.utc).isoformat(), "repositories": repositories,
             "engine_capabilities": engine.capabilities(), "reasoning_capabilities": reasoning.capabilities(),
             "full_gm_attachment": attachment, "native_component_probe": component, "native_http_probe": http,
-            "summary": "Native single-actor components and HTTP can be used; agreed multi-agent GM contract cannot yet attach.",
+            "summary": "A native HTTP scope and B API availability are reported separately; full multi-agent attachment is blocked.",
             "team_source_modified": False, "remote_writes": False,
         }
     finally:
@@ -170,7 +176,7 @@ def main():
     parser.add_argument("--engine-repo", type=Path)
     parser.add_argument("--agent-repo", type=Path)
     parser.add_argument("--skip-http", action="store_true")
-    parser.add_argument("--out", type=Path, default=Path(__file__).with_name("examples") / "integration_attempt_20261006.json")
+    parser.add_argument("--out", type=Path, default=Path(__file__).with_name("examples") / "integration_attempt_current.json")
     args = parser.parse_args()
     report = run(args.engine_repo, args.agent_repo, not args.skip_http)
     args.out.parent.mkdir(parents=True, exist_ok=True)

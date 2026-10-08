@@ -31,6 +31,17 @@ def run(engine_repo=None, agent_repo=None):
     engine, reasoning = NativeEngineBridge(engine_repo), NativeReasoningBridge(agent_repo)
     catalog = json.loads(Path(__file__).with_name("catalog.json").read_text(encoding="utf-8"))
     catalogs = compare_catalogs(engine, reasoning, catalog)
+    if not reasoning.capabilities()["legacy_interpreter_available"]:
+        return {
+            "schema_version": VERSION, "report_kind": "message_semantics_evidence",
+            "status": "blocked_by_B_API_change",
+            "reason": "B removed Zen.intent; use the new player adapter after B execution fixes",
+            "catalog_identity": catalogs,
+            "all_catalog_ids_and_labels_match": all(row["same_ids_and_labels"] for row in catalogs),
+            "action_body_roundtrips": [], "acquired_information_roundtrips": [], "native_information_flow": [],
+            "team_adoption": "C draft only; no A/B adoption observed",
+            "boundaries": {"live_llm": False, "native_multi_agent_protocol": False, "native_gm_completion_event": False},
+        }
     observation = engine.legacy_start()
     game_id = observation["id"]
     # Context is supplied by this test harness, never decoded from A's turn.
@@ -109,7 +120,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--engine-repo")
     parser.add_argument("--agent-repo")
-    parser.add_argument("--out", default=str(Path(__file__).with_name("examples") / "shared_language_20261006.json"))
+    parser.add_argument("--out", default=str(Path(__file__).with_name("examples") / "shared_language_current.json"))
     args = parser.parse_args()
     report = run(args.engine_repo, args.agent_repo)
     path = Path(args.out)
@@ -119,7 +130,7 @@ def main():
                       "action_body_roundtrips": len(report["action_body_roundtrips"]),
                       "acquired_information_roundtrips": len(report["acquired_information_roundtrips"]),
                       "team_adoption": report["team_adoption"]}, ensure_ascii=False))
-    return 0 if report["all_catalog_ids_and_labels_match"] else 1
+    return 0 if report["all_catalog_ids_and_labels_match"] and report.get("status") != "blocked_by_B_API_change" else 1
 
 
 if __name__ == "__main__":

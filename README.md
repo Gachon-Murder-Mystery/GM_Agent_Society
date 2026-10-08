@@ -6,6 +6,8 @@ GM은 캐릭터 조합 배분, 이동→탐문·탐색→추리 턴 진행, 상�
 
 사용자의 직접 개발 범위는 GM 및 GM↔agent의 안내·수신·조정이다. 엔진과 agent 내부 구현은 각 담당자가 제공하며 GM 측 어댑터로 연결한다. `ROLE_TASKS_20261006.md`는 역할별 선결 조건과 이 개발 경계를 기록한다. 에이전트 간 상호작용은 해당 문서의 기존 권고 흐름을 작업 전제로 사용한다.
 
+2026-10-08 최신 확인: A는 변경이 없고 B의 새 커밋 3개를 로컬에 반영했다. B의 `sync/decide/ingest_result`에 대응하는 [GM 어댑터 변경](GM_ADAPTER_UPDATE_20261008.md)을 추가했다. 자발적 공유는 선택 기능으로 분리하고 기본 실행에서는 끈다. 기존 점검 도구는 제거된 `Zen.intent`를 명시적 차단 상태로 보고한다. B 실행 오류와 A 공식 접점 부족으로 전체 연결은 아직 불가능하다. 변경 전 상태는 [업데이트 검토](TEAM_UPDATE_REVIEW_20261008.md)와 [당시 실행 기록](examples/team_update_review_20261008.json)에 보존했다.
+
 ## 실행
 
 워크스페이스 루트에서 Python 3.10 이상으로 실행한다. 실행과 테스트에는 외부 패키지나 LLM 연결이 필요 없다.
@@ -18,7 +20,7 @@ python -m gm_coordinator.demo --scenario all-dead --agents 3
 python -m unittest gm_coordinator.test_coordinator -v
 ```
 
-`--agents`는 양의 정수이며 인원수가 고정되지 않는다. `--scenario`는 `normal`, `player-fault`, `gm-fault`, `all-fault`, `all-dead`, `death`를 지원한다. `--withhold`는 모의 플레이어의 자발적 공유를 끈다. `--corpse-decay 0`은 임시 시체 정보 감쇠 규칙을 끈다.
+`--agents`는 양의 정수이며 인원수가 고정되지 않는다. `--scenario`는 `normal`, `player-fault`, `gm-fault`, `all-fault`, `all-dead`, `death`를 지원한다. 자발적 공유는 기본적으로 꺼져 있으며 `--share`로 켠다. 기존 `--withhold`도 공유를 끈 상태로 실행한다. `--corpse-decay 0`은 임시 시체 정보 감쇠 규칙을 끈다.
 
 ```powershell
 python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario normal --agents 3
@@ -31,6 +33,8 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | 파일 | 역할 |
 |---|---|
 | `contracts.py` | 교체 가능한 EnginePort / PlayerPort, 행동 요청, GM 제어 식별자 |
+| `player_adapter.py` | B sync/decide/ingest_result와 GM 입력/결과 형식의 연결 경계 |
+| `GM_ADAPTER_UPDATE_20261008.md` | 새 어댑터·선택 공유·이벤트 누락 처리와 검증 범위 |
 | `coordinator.py` | C가 구현하는 GM 조정 로직 |
 | `store.py` | GM 기록과 모의 엔진 상태·이벤트의 SQLite 저장 |
 | `catalog.json` | 엔진에서 받을 임시 직업·성향·목표·장소·후보 데이터 |
@@ -73,7 +77,7 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 
 실제 팀 저장소를 점검하려면 워크스페이스 루트에서 `python -m gm_coordinator.integration_probe`를 실행한다. 기본적으로 같은 상위 폴더의 `Game-engine`과 `Agent_Reasoning`을 읽는다. 경로가 다르면 `--engine-repo`와 `--agent-repo`로 지정한다. 기존 데모 함수와 HTTP 서버를 실제 실행하지만, 전체 GM 계약이 없으면 연결을 명시적으로 차단한다. 이 결과는 `demo.py`의 모의 실행 결과와 별도로 저장한다. 실시간 LLM과 자동 장애 감시는 실행하지 않는다.
 
-자료가 같은 의미로 이동하는지 확인하려면 `python -m gm_coordinator.language_probe`를 실행한다. 실제 A/B 명령 본문과 C ActionRequest의 왕복 변환, 카탈로그 ID, 실제 획득 단서의 C Information 변환을 확인한다. 형식·의미·팀 채택의 차이는 `SHARED_LANGUAGE_20261006.md`에 정리했다. 이 기준안의 A/B 채택은 아직 확인되지 않았다.
+자료가 같은 의미로 이동하는지 확인하려면 `python -m gm_coordinator.language_probe`를 실행한다. 기존 B 인터프리터가 없으면 차단 상태를 보고한다. 새 코드 자체 점검은 `python -B -m gm_coordinator.team_update_probe`로 실행하며 `examples/team_update_current.json`을 갱신한다. 형식·의미·팀 채택의 차이는 `SHARED_LANGUAGE_20261006.md`, 최신 연결 조건은 `GM_ADAPTER_UPDATE_20261008.md`에 정리했다. 이 기준안의 A/B 채택은 아직 확인되지 않았다.
 
 ## 출처와 라이선스
 

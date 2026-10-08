@@ -13,7 +13,7 @@ from .store import Store
 SCENARIOS = ("normal", "player-fault", "gm-fault", "all-fault", "all-dead", "death")
 
 
-def run(scenario="normal", agents=3, seed=42, max_cycles=80, db=":memory:", share=True, decay=1):
+def run(scenario="normal", agents=3, seed=42, max_cycles=80, db=":memory:", share=False, decay=1):
     if type(agents) is not int or agents < 1 or scenario not in SCENARIOS or max_cycles < 1:
         raise ValueError("invalid scenario, roster size or cycle budget")
     store = Store(db)
@@ -111,10 +111,12 @@ def main():
     parser.add_argument("--max-cycles", type=int, default=80)
     parser.add_argument("--db", default=":memory:")
     parser.add_argument("--out", type=Path)
-    parser.add_argument("--withhold", action="store_true", help="Scripted players do not voluntarily share")
+    sharing = parser.add_mutually_exclusive_group()
+    sharing.add_argument("--share", action="store_true", help="Enable optional scripted voluntary sharing")
+    sharing.add_argument("--withhold", action="store_true", help="Keep voluntary sharing disabled (the default)")
     parser.add_argument("--corpse-decay", type=int, default=1, help="0 disables provisional information decay")
     args = parser.parse_args()
-    result = run(args.scenario, args.agents, args.seed, args.max_cycles, args.db, not args.withhold, args.corpse_decay)
+    result = run(args.scenario, args.agents, args.seed, args.max_cycles, args.db, args.share, args.corpse_decay)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

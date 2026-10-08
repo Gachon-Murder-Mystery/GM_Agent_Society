@@ -63,7 +63,7 @@ GM 안내에 전체 `inventories`, 전체 `observed_information`, 다른 캐릭�
 
 결과에는 `execution_status=completed`, `outcome=succeeded/failed/skipped`, `consumed=true`, 주사위 결과, 획득 정보, 본인의 전체 보유 정보 ID가 들어간다. 탐색 실패도 완료된 행동이며 기술적 장애가 아니다. GM용 `action_completed` 이벤트에는 같은 결과가 포함된다.
 
-`share_information(game_id, agent_id, ids, message_id)`는 능동 소유자만 사용한다. 현재 임시 정책에서는 공유 메시지가 게임 행동을 추가 소비하지 않는다. 전송 횟수를 행동 예산으로 제한할지는 추후 엔진 규칙으로 교체할 수 있다. 공유를 해도 엔진의 턴별 게임 행동 소비 제한은 바뀌지 않는다.
+`share_information(game_id, agent_id, ids, message_id)`는 선택 기능인 `InformationSharingPort`에 속하며 최초 연결의 필수 조건이 아니다. 기본 모의 실행은 공유를 하지 않으며 `--share`로 켠다. 공유는 능동 소유자만 사용하고 현재 임시 정책에서는 게임 행동을 추가 소비하지 않는다. 전송 횟수 제한은 추후 엔진 규칙으로 교체할 수 있다. GM이 획득 결과를 감독 수신하는 필수 기능과 구분한다.
 
 ## 장애·사망·복원
 

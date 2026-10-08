@@ -27,8 +27,9 @@ class TeamAdapterTests(unittest.TestCase):
         engine, reasoning, _ = self.make()
         self.assertEqual(Path(engine.module.__file__).parent, ROOT / "Game-engine")
         self.assertEqual(Path(reasoning.engine_module.__file__).parent, ROOT / "Agent_Reasoning")
-        self.assertIs(reasoning.module.local_intent, reasoning.engine_module.local_intent)
-        self.assertIsNot(reasoning.module.local_intent, engine.module.local_intent)
+        if reasoning.capabilities()["legacy_interpreter_available"]:
+            self.assertIs(reasoning.module.local_intent, reasoning.engine_module.local_intent)
+            self.assertIsNot(reasoning.module.local_intent, engine.module.local_intent)
         self.assertIs(sys.modules.get("engine"), original)
 
     def test_full_GM_attachment_is_blocked_before_creating_or_mocking_a_game(self):
@@ -44,14 +45,24 @@ class TeamAdapterTests(unittest.TestCase):
         observation = engine.legacy_start()
         observation["truth"] = "PRIVATE_SENTINEL"
         observation["all_clues"] = "PRIVATE_SENTINEL"
+        if not reasoning.capabilities()["legacy_interpreter_available"]:
+            with self.assertRaises(IntegrationUnavailable):
+                reasoning.interpret("식당 칸으로 이동한다", observation)
+            self.assertIsNone(reasoning.last_input)
+            return
         result = reasoning.interpret("식당 칸으로 이동한다", observation)
         self.assertEqual(result["intent"], {"kind": "move", "place": 2})
         self.assertEqual(set(reasoning.last_input), {"name", "role", "pending", "target"})
         self.assertNotIn("PRIVATE_SENTINEL", repr(reasoning.last_input))
 
-    def test_native_B_to_A_flow_returns_new_information_to_C_receipt_store(self):
+    def test_native_B_flow_or_explicit_API_change_block(self):
         engine, reasoning, store = self.make()
         report = native_component_probe(engine, reasoning, store)
+        if not reasoning.capabilities()["legacy_interpreter_available"]:
+            self.assertEqual(report["status"], "blocked_by_B_API_change")
+            self.assertEqual(report["trace"], [])
+            self.assertFalse(report["new_information_received_by_observer"])
+            return
         trace = report["trace"]
         self.assertEqual([step["b_interpretation"]["intent"]["kind"] for step in trace], ["move", "prepare", "check", "roll"])
         self.assertEqual(len(trace[-1]["a_native_result"]["acquired_clues"]), 2)

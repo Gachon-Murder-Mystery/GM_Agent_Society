@@ -47,11 +47,15 @@ class Coordinator:
                     break  # Process a consistent engine snapshot; defer later events.
                 if event["sequence"] <= ledger["event_cursor"]:
                     continue
+                if event["sequence"] != ledger["event_cursor"] + 1:
+                    raise ContractError(f"missing engine event {ledger['event_cursor'] + 1}; re-query before advancing GM state")
                 ledger["event_cursor"] = event["sequence"]
                 ledger["event_log"].append({"event_id": event["event_id"], "type": event["type"], "sequence": event["sequence"]})
                 if event["type"] == "action_completed":
                     result = event["payload"]["result"]
                     ledger["action_ledger"][result["action_id"]] = result
+            if ledger["event_cursor"] != snapshot["event_sequence"]:
+                raise ContractError("engine events do not cover the snapshot; re-query before advancing GM state")
             ledger.update(snapshot)
             self.store.put(db, "gm", self.game_id, ledger)
         return ledger

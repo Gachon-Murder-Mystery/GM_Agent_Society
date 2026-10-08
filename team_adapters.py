@@ -12,7 +12,7 @@ import sys
 import uuid
 from pathlib import Path
 
-from .contracts import ContractError, EnginePort, PlayerPort
+from .contracts import ContractError, EnginePort, InformationSharingPort, PlayerPort
 from .message_language import normalize_acquired_clue
 
 
@@ -70,6 +70,7 @@ class NativeEngineBridge:
             "required_engine_port_methods": required,
             "native_engine_port_methods_present": [name for name in required if callable(getattr(self.module, name, None))],
             "native_engine_port_methods_missing": [name for name in required if not callable(getattr(self.module, name, None))],
+            "optional_engine_methods": {name: callable(getattr(self.module, name, None)) for name in port_methods(InformationSharingPort)},
             "bridge_scope": "single-player native functions and provisional catalog normalization",
             "full_gm_compatible": False,
         }
@@ -131,7 +132,9 @@ class NativeReasoningBridge:
     def capabilities(self):
         required = port_methods(PlayerPort)
         return {
-            "native_interpreter": "Zen.intent(g, text)", "mode": "offline_rule_parser",
+            "native_interpreter": "Zen.intent(g, text)", "mode": "offline_rule_parser" if callable(getattr(self.interpreter, "intent", None)) else "legacy_interpreter_unavailable",
+            "legacy_interpreter_available": callable(getattr(self.interpreter, "intent", None)),
+            "next_player_interface": "ReasoningPlayerAdapter wrapping B sync/decide/ingest_result",
             "native_narrator": "Zen.narrate(g, text, result)",
             "player_port_methods_missing": [name for name in required if not callable(getattr(self.module, name, None))],
             "autonomous_player_loop_verified": False,
@@ -155,13 +158,15 @@ class NativeReasoningBridge:
                 "pending": copy.deepcopy(observation["pending"]), "target": target_id}
 
     def interpret(self, text, observation):
+        if not self.capabilities()["legacy_interpreter_available"]:
+            raise IntegrationUnavailable("B removed Zen.intent; use an executable B LLMAgent instance with ReasoningPlayerAdapter", ["Zen.intent"])
         self.last_input = self.private_safe_legacy_input(observation)
         intent, notice = self.interpreter.intent(self.last_input, text)
         return {"intent": intent, "notice": notice, "input_keys": list(self.last_input),
                 "input_source": "A public observation whitelist", "mode": "offline_rule_parser"}
 
     def choose_action(self, phase_notice, observation):
-        raise IntegrationUnavailable("B has no native autonomous choose_action loop; text interpretation is not autonomous play")
+        raise IntegrationUnavailable("Legacy Zen bridge cannot provide PlayerPort; wrap an executable B instance with ReasoningPlayerAdapter")
 
 
 class LegacyGMObserver:
