@@ -22,7 +22,7 @@ GM이 매 행동을 중계하거나 승인하지 않는다. GM은 전체 턴을 
 | 감독 상태 | game/cycle/phase/epoch, 제어자·term, 능동 명단, 위치, 소비 기록, 플레이어 유래 캐릭터별 정보 ID, 관측된 정보, 공유 정보, 종료 상태 | `gm_snapshot(game_id)` |
 | 완료·상태 이벤트 | event_id, game_id, sequence, cycle_id, phase, phase_epoch, type, payload | `events_after(game_id, sequence)` |
 | 플레이어 장애 신호 | agent_id, 명시적인 장애 사유 | 런타임이 `report_player_fault` 호출 |
-| GM 장애 신호 | 기존 제어자·term과 현재 능동 명단 | 생존 런타임이 `replace_failed_gm` 호출 |
+| GM 장애 신호 | 기존 제어자·term | 엔진 감시 기능의 장애 확정 후 승계 요청. 현재 모의 데모는 장애를 명시적으로 주입함 |
 
 획득 결과 이벤트는 다른 플레이어에게 보류된 정보도 GM에 제공한다. 이 이벤트는 감독용이며 전체 플레이어에게 방송하지 않는다. 원본 NPC의 미발견 보유 정보 디렉터리와 숨겨진 정답은 감독 상태에 포함하지 않는다. 새롭게 획득한 정보에는 고정 ID, 제외되는 후보의 종류·ID, 설명이 붙는다.
 
@@ -37,7 +37,8 @@ GM이 매 행동을 중계하거나 승인하지 않는다. GM은 전체 턴을 
 | 플레이어: 이동 시작 | `positions` | 모든 캐릭터의 id/name/mode/room/job 이름만 제공 |
 | 엔진 | `advance_phase(game_id, control, phase_epoch)` | 능동 참여자의 행동 소비를 재검사하고 다음 턴으로 전환 |
 | 엔진 | `convert_fault(game_id, agent_id, reason, control)` | 기존 정보·캐릭터를 보존하고 능동 플레이어를 NPC로 전환 |
-| 엔진 | `take_over(game_id, successor_id, previous_control)` | 제어권 교체와 선택 캐릭터의 NPC 전환을 원자적으로 수행 |
+| 엔진 | `take_over(game_id, previous_control)` | GM 장애 시 엔진이 후임을 선택하고 이전 제어권을 폐기한다. 후임의 기존 플레이어 자리는 `fault`로 남긴다. |
+| 엔진 | `convert_fault(game_id, successor_id, "promoted_to_gm", new_control)` | 새 GM의 요청에 따라 비워진 플레이어 자리를 NPC로 전환한다. |
 | 엔진 | `finish(game_id, reason, control)` | GM이 요청한 종료를 공식 기록 |
 
 GM 안내에 전체 `inventories`, 전체 `observed_information`, 다른 캐릭터의 개인 목표·능력치·성향을 복사하지 않는다. 본인의 상세 관찰은 엔진의 `agent_snapshot`으로 받는다. 원장 내 작업 ID는 턴·캐릭터 단위 조정 ID이며, 사건 단서 획득 성공 여부와 별개다.

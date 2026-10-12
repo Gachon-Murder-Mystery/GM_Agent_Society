@@ -108,14 +108,20 @@ class Coordinator:
     def replace_failed_gm(cls, engine, store, game_id, previous_control):
         """Called by a surviving runtime/watchdog, not by the failed GM process.
 
-        Lowest stable agent ID is a provisional election rule. The engine CAS
-        prevents two candidates or a resumed old GM from changing control twice.
+        The engine chooses and fences the successor. The new GM then converts
+        their vacated player character into an NPC through the normal GM command.
         """
-        snapshot = engine.gm_snapshot(game_id)
-        if snapshot["control"] != vars(previous_control) or not snapshot["active_agents"]:
-            raise ContractError("no valid GM election from this state")
-        successor = sorted(snapshot["active_agents"])[0]
-        control = engine.take_over(game_id, successor, previous_control)
+        control = engine.take_over(game_id, previous_control)
         gm = cls(engine, store, game_id, control)
         gm.sync()
+        gm.reconcile_successor_slot()
         return gm
+
+    def reconcile_successor_slot(self):
+        """Finish NPC conversion if a newly promoted GM stopped after takeover."""
+        snapshot = self.sync()
+        actor = next((a for a in snapshot["actors"] if a["id"] == self.control.controller_id), None)
+        if actor is not None and actor["mode"] == "fault":
+            self.engine.convert_fault(self.game_id, actor["id"], "promoted_to_gm", self.control)
+            return self.sync()
+        return snapshot

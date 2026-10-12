@@ -8,7 +8,7 @@ def build():
     ident = {"type": "string", "minLength": 1}
     integer = {"type": "integer", "minimum": 1}
     phase = {"enum": ["movement", "interaction", "deduction"]}
-    mode = {"enum": ["active", "npc", "corpse"]}
+    mode = {"enum": ["active", "fault", "npc", "corpse"]}
     nullable_string = {"type": ["string", "null"]}
     def ref(name):
         return {"$ref": f"#/$defs/{name}"}

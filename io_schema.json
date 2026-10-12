@@ -46,6 +46,7 @@
         "mode": {
           "enum": [
             "active",
+            "fault",
             "npc",
             "corpse"
           ]
@@ -527,6 +528,7 @@
         "actor_mode": {
           "enum": [
             "active",
+            "fault",
             "npc",
             "corpse"
           ]

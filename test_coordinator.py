@@ -252,6 +252,8 @@ class CoordinatorTests(unittest.TestCase):
         self.assertEqual(after["inventories"], before["inventories"])
         self.assertEqual(after["action_ledger"], before["action_ledger"])
         self.assertEqual(engine.agent_snapshot("g", "p0")["self"]["mode"], "npc")
+        kinds = [event["type"] for event in engine.events_after("g", before["event_sequence"])]
+        self.assertEqual(kinds, ["gm_replaced", "actor_became_npc"])
         with self.assertRaises(ContractError):
             gm.tick()
         with self.assertRaises(ContractError):
@@ -260,6 +262,24 @@ class CoordinatorTests(unittest.TestCase):
             Coordinator.replace_failed_gm(engine, gm.store, "g", gm.control)
         self.act(engine, "p1", "pass")
         self.assertEqual(successor.tick(), "advanced")
+
+    def test_engine_promotes_then_new_gm_converts_vacated_player_slot(self):
+        store, engine, old_gm = self.make()
+        control = engine.take_over("g", old_gm.control)
+        self.assertEqual(control, Control("p0", 2))
+        snapshot = engine.gm_snapshot("g")
+        self.assertEqual(snapshot["active_agents"], ["p1"])
+        self.assertEqual(engine.agent_snapshot("g", "p0")["self"]["mode"], "fault")
+        with self.assertRaises(ContractError):
+            self.act(engine, "p0", "move", {"room": 2})
+        with self.assertRaises(ContractError):
+            old_gm.report_player_fault("p1", "stale_gm")
+        successor = Coordinator(engine, store, "g", control)
+        successor.reconcile_successor_slot()
+        self.assertEqual(engine.agent_snapshot("g", "p0")["self"]["mode"], "npc")
+        event_count = engine.gm_snapshot("g")["event_sequence"]
+        successor.reconcile_successor_slot()
+        self.assertEqual(engine.gm_snapshot("g")["event_sequence"], event_count)
 
     def test_last_player_becoming_gm_causes_technical_ending(self):
         store, engine, gm = self.make(1)

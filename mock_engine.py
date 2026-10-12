@@ -354,27 +354,32 @@ class MockEngine:
             self._control(state, control)
             self._open(state)
             actor = state["actors"].get(agent_id)
-            if actor is None or actor["mode"] != "active":
-                raise ContractError("only active players can become fault NPCs")
+            if actor is None or actor["mode"] not in ("active", "fault"):
+                raise ContractError("only active or fault players can become fault NPCs")
+            if actor["mode"] == "fault" and agent_id != control.controller_id:
+                raise ContractError("only the successor GM may convert their vacated player slot")
             actor["mode"] = "npc"
             state["last_removal_reason"] = "technical_failure"
             self._event(db, state, "actor_became_npc", actor_id=agent_id, reason=reason,
                         retained_information_ids=list(actor["information_ids"]))
 
-    def take_over(self, game_id, agent_id, previous_control):
+    def take_over(self, game_id, previous_control):
         with self._change(game_id) as (db, state, rng):
             self._control(state, previous_control)
             if state["ended"]:
                 raise ContractError("ended game cannot elect a GM")
+            candidates = sorted(key for key, actor in state["actors"].items() if actor["mode"] == "active")
+            if not candidates:
+                raise ContractError("no active player can succeed the GM")
+            agent_id = candidates[0]  # Provisional engine-owned succession policy.
             actor = state["actors"].get(agent_id)
-            if actor is None or actor["mode"] != "active":
-                raise ContractError("successor must be an active player")
-            actor["mode"] = "npc"
+            actor["mode"] = "fault"
             state["last_removal_reason"] = "technical_failure"
             control = Control(agent_id, previous_control.term + 1)
             state["control"] = {"controller_id": control.controller_id, "term": control.term}
             self._event(db, state, "gm_replaced", previous_control=vars(previous_control), control=vars(control),
-                        actor_id=agent_id, retained_information_ids=list(actor["information_ids"]))
+                        actor_id=agent_id, vacated_player_mode="fault",
+                        retained_information_ids=list(actor["information_ids"]))
             return control
 
     def finish(self, game_id, reason, control):
