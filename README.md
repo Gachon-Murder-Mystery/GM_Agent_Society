@@ -45,6 +45,13 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `engine_v1.py` | A `/integration/v1/` HTTP 클라이언트, v1 GM 정책 `V1Coordinator`, 승계 감지 `GMWorker` |
 | `v1_demo.py` / `test_engine_v1.py` | 실제 A 엔진 프로세스 + 스크립트 플레이어 시나리오 / 자동 검증 |
 | `GM_ENGINE_V1_UPDATE_20261019.md` | v1 대응 내용·검증 결과·남은 차단 사항 |
+| `GAME_SPEC_v1.2.md` | **확정 기획서 v1.2 (개발 기준 문서).** v1.1에 GM 담당 결정(풀 구성·Role 배정·인원·간접 단서 검사 주체·LLM)을 반영. `build_spec_docx.py`로 DOCX 생성 |
+| `GAME_SPEC_v1.1.md` | 기획서 v1.1 (Role, 고정 MBTI, GM 유임, 서브 미션, 간접 단서). 부속: `SUBMISSION_INDIRECT_CLUE_v1.0.md` |
+| `GM_ENGINE_REQUEST_20261019.md` | GM → 엔진 인터페이스 요청 R1~R10 (v1.2 대응) |
+| `GAME_SPEC_v1.0.md` | 기획서 v1.0 (이전 판). 공통 + A·B·C 영역별 확인 사항, 선결 항목 링크. `build_spec_docx.py`로 DOCX 생성 |
+| `PLAN_CURRENT_20261019.md` | 현재 구현 기반 기획안 (A/B/C 코드에서 실제 동작하는 규칙·구조) |
+| `PLAN_REVISION_20261019.md` | 기획 수정안: 경쟁 게임·캐릭터·관계성·판정 규칙과 결정해야 할 사항(Q1~Q20) |
+| `CHARACTER_SHEETS_20261019.md` | 캐릭터 12명 시트 초안: 스테이터스·스킬·MBTI 쓰임·판정 기준선 |
 | `REMAINING_WORK_20261019.md` | 게임 완성까지 남은 A/B/C·공동 기능과 진행 순서 |
 | `contracts.py` | 교체 가능한 EnginePort / PlayerPort, 행동 요청, GM 제어 식별자 |
 | `player_adapter.py` | B sync/decide/ingest_result와 GM 입력/결과 형식의 연결 경계 |
