@@ -12,8 +12,8 @@ from .team_adapters import IntegrationUnavailable, NativeEngineBridge, NativeRea
 ROOT = Path(__file__).resolve().parent.parent
 
 
-@unittest.skipUnless((ROOT / "Game-engine/engine.py").exists() and (ROOT / "Agent_Reasoning/llm.py").exists(),
-                     "Clone the two team repositories beside gm_coordinator first")
+@unittest.skipUnless((ROOT / "Game-engine/engine.py").exists() and (ROOT / "Agent_Reasoning/engine.py").exists(),
+                     "Legacy B layout (engine.py/deploy) absent; B was restructured after f00bc05")
 class TeamAdapterTests(unittest.TestCase):
     def make(self):
         engine = NativeEngineBridge(ROOT / "Game-engine")

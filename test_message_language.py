@@ -85,8 +85,8 @@ class MessageMeaningTests(unittest.TestCase):
         self.assertTrue(result["consumed"])
         self.assertEqual(result["actor_mode"], "active")
 
-    @unittest.skipUnless((ROOT / "Game-engine/engine.py").exists() and (ROOT / "Agent_Reasoning/llm.py").exists(),
-                         "Clone the team repositories beside gm_coordinator")
+    @unittest.skipUnless((ROOT / "Game-engine/engine.py").exists() and (ROOT / "Agent_Reasoning/engine.py").exists(),
+                         "Legacy B layout (engine.py/deploy) absent; B was restructured after f00bc05")
     def test_actual_B_commands_A_clues_and_C_decoder_and_receipt_agree_on_supported_meaning(self):
         report = run()
         if report.get("status") == "blocked_by_B_API_change":
