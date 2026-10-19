@@ -45,11 +45,12 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 | `engine_v1.py` | A `/integration/v1/` HTTP 클라이언트, v1 GM 정책 `V1Coordinator`, 승계 감지 `GMWorker` |
 | `v1_demo.py` / `test_engine_v1.py` | 실제 A 엔진 프로세스 + 스크립트 플레이어 시나리오 / 자동 검증 |
 | `GM_ENGINE_V1_UPDATE_20261019.md` | v1 대응 내용·검증 결과·남은 차단 사항 |
-| `GAME_SPEC_v1.2.md` | **확정 기획서 v1.2 (개발 기준 문서).** v1.1에 GM 담당 결정(풀 구성·Role 배정·인원·간접 단서 검사 주체·LLM)을 반영. `build_spec_docx.py`로 DOCX 생성 |
+| `GAME_SPEC_v1.3.md` | **확정 기획서 v1.3 (개발 기준 문서).** 공정성 감시 제외, GM 정책 기본값(C6)·대역 플레이어 기본값(D3) 문서화. `build_spec_docx.py`로 DOCX 생성 |
+| `GAME_SPEC_v1.2.md` | 기획서 v1.2 (GM 담당 결정: 풀 구성·중간 참가 없음·Role 배정·인원·간접 단서 검사 주체·LLM) |
 | `GAME_SPEC_v1.1.md` | 기획서 v1.1 (Role, 고정 MBTI, GM 유임, 서브 미션, 간접 단서). 부속: `SUBMISSION_INDIRECT_CLUE_v1.0.md` |
 | `GM_TASK_STATUS_20261019.md` | GM 담당 작업 현황 (완료 / 선결 작업 대기) |
-| `role_policy.py`, `mission_policy.py`, `gm_metrics.py` | v1.2 Role 배정, 서브 미션 선택·지정, 성과 지표(C4)·공정성(C3). 순수 함수 |
-| `competitive_player.py` | 경쟁형·무작위 플레이어 대역 (LLM 없음). 엔진 형식은 A-9 전까지 가정 |
+| `role_policy.py`, `mission_policy.py`, `gm_metrics.py` | v1.3 Role 배정, 서브 미션 선택·지정, 성과 지표(C4). 기본값은 기획서 C6. 순수 함수 |
+| `competitive_player.py` | 경쟁형·무작위 플레이어 대역 (LLM 없음, 기본값은 기획서 D3). 엔진 형식은 A-9 전까지 가정 |
 | `build_v12_data.py` → `v12_data.json` | 기획서 A1·설계서 2절에서 캐릭터 12명·서브 미션 58종 추출 |
 | `test_v12_policy.py` | 위 모듈 단위 테스트 (엔진·LLM 없음) |
 | `GM_ENGINE_REQUEST_20261019.md` | GM → 엔진 인터페이스 요청 R1~R10 (v1.2 대응) |

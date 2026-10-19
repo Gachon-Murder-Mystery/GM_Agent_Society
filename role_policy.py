@@ -1,4 +1,4 @@
-"""GM Role assignment (spec v1.2 C1). Pure functions; no engine, no LLM.
+"""GM Role assignment (spec v1.3 C1; defaults in C6). Pure functions; no engine, no LLM.
 
 Character i holds job i, so choosing a job for an agent chooses its character.
 `history` is the engine's participation record (request R6):

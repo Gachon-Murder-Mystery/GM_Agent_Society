@@ -58,9 +58,9 @@ def missions(design):
 
 
 def build():
-    spec, design = HERE / "GAME_SPEC_v1.2.md", HERE / "SUBMISSION_INDIRECT_CLUE_v1.0.md"
+    spec, design = HERE / "GAME_SPEC_v1.3.md", HERE / "SUBMISSION_INDIRECT_CLUE_v1.0.md"
     return {"schema_version": "gm-v12-data-0.1",
-            "provenance": {"characters": "GAME_SPEC_v1.2.md A1", "missions": "SUBMISSION_INDIRECT_CLUE_v1.0.md 2.5-2.6",
+            "provenance": {"characters": "GAME_SPEC_v1.3.md A1", "missions": "SUBMISSION_INDIRECT_CLUE_v1.0.md 2.5-2.6",
                            "ids": "Game-engine/engine.py PLACES/JOBS order", "license": "Hunka Dunka (2024), CC BY-SA 4.0"},
             "places": PLACES, "jobs": JOBS, "mbti": MBTI, "tiers": TIERS, "stat_tokens": STAT_TOKENS,
             "characters": characters(spec), "missions": missions(design)}

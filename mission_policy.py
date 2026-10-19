@@ -1,4 +1,4 @@
-"""GM sub-mission choice and "GM 지정" targets (spec v1.2 C1, design doc 2.2-2.3, 2.7). Pure functions.
+"""GM sub-mission choice and "GM 지정" targets (spec v1.3 C1, defaults C6; design doc 2.2-2.3, 2.7). Pure functions.
 
 The engine draws three candidates per player per tier (request R5); the GM picks one
 per tier, fills designated targets and quantity N, and records two compared alternatives.

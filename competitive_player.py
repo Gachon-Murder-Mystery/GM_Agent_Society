@@ -1,4 +1,4 @@
-"""Scripted competitive player and random player (C-8). No LLM; for engine/GM checks and baselines.
+"""Scripted competitive player and random player (C-8; defaults in spec v1.3 D3). No LLM; for engine/GM checks and baselines.
 
 Formats are assumptions until the engine's hypothesis-question API (A-9) lands:
 - clue: {"id", "kind": "definite", "category": "suspect"|"weapon"|"place", "candidate"}

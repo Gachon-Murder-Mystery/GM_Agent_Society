@@ -1,10 +1,10 @@
-"""Spec v1.2 GM policies and scripted players. Pure unit tests: no engine, no LLM, no network."""
+"""Spec v1.3 GM policies (C1, C6) and scripted players (D3). Pure unit tests: no engine, no LLM, no network."""
 import random
 import unittest
 
 from . import build_v12_data
 from .competitive_player import CompetitivePlayer, Knowledge, RandomPlayer
-from .gm_metrics import (balance, completion, exploration, fairness_report, gm_score, record_completeness)
+from .gm_metrics import balance, completion, exploration, gm_score, record_completeness
 from .mission_policy import TIERS, conflicts, effective_tier, load_data, plan_missions, quantity_for
 from .role_policy import (JOBS, choose_participants, covered, job_competency, maturity_weight, normalized_score,
                           plan_roles, player_count)
@@ -194,14 +194,6 @@ class MetricsTests(unittest.TestCase):
         decisions = [{"alternatives": [{"id": "a"}, {"id": "b"}], "selected_alternative": "a", "reason": "x"},
                      {"alternatives": [{"id": "a"}], "selected_alternative": "a", "reason": "x"}]
         self.assertEqual(record_completeness(decisions), 0.5)
-
-    def test_fairness_flags_concentration_without_intervening(self):
-        questions = [{"asker_id": "a", "target_id": "c", "approach": "threaten", "successes": 2}] * 4 + \
-                    [{"asker_id": "c", "target_id": "a", "approach": "question", "successes": 1}]
-        report = fairness_report(questions, ["a", "b", "c"])
-        self.assertEqual({(f["agent_id"], f["metric"]) for f in report["flagged"]}, {("c", "forced"), ("c", "threats")})
-        self.assertIsNone(report["intervention"])
-        self.assertEqual(fairness_report(questions[-1:], ["a", "b", "c"])["flagged"], [])
 
 
 def definite(cid, category, candidate):
