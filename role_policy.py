@@ -5,13 +5,18 @@ Character i holds job i, so choosing a job for an agent chooses its character.
 {agent_id: [{"game_id", "job_id", "final_score", "participation_index"}]}.
 A successor GM gets the same history from the engine, so it computes the same values.
 """
+import json
 import random
+from pathlib import Path
 from statistics import mean, pstdev
 
-JOBS = 12
-MIN_PLAYERS, MAX_PLAYERS = 3, 12
-MATURITY_K = 5          # w = (n / (n + K))^2 (default)
-SCORE_MIN, SCORE_SPAN = -20, 180  # A9 + A13: death -20 .. 1st 100 + all missions 60
+# Single source shared with the engine check (settings.verify_engine).
+_SETTINGS = json.loads(Path(__file__).with_name("competitive_settings.json").read_text(encoding="utf-8"))
+JOBS = _SETTINGS["role_policy"]["jobs"]
+MIN_PLAYERS, MAX_PLAYERS = _SETTINGS["engine_rules"]["min_players"], _SETTINGS["engine_rules"]["max_players"]
+MATURITY_K = _SETTINGS["role_policy"]["maturity_k"]  # w = (n / (n + K))^2 (default)
+# A9 + A13: death -20 .. 1st 100 + all missions 60
+SCORE_MIN, SCORE_SPAN = _SETTINGS["role_policy"]["score_min"], _SETTINGS["role_policy"]["score_span"]
 
 
 def maturity_weight(n, k=MATURITY_K):

@@ -33,7 +33,8 @@ class EngineV1GMTests(unittest.TestCase):
         prefix = "g"
         self.ids = [f"{prefix}-a{i}" for i in range(5)]
         tokens = {aid: self.operator.call("pool/register", agent_id=aid)["pool_token"] for aid in self.ids}
-        self.game_id = self.operator.call("games/create", game_id=f"{prefix}-case", seed=11,
+        # Cooperative v1 contract; the engine's default became competitive v1.3 (competitive_gm.py).
+        self.game_id = self.operator.call("games/create", game_id=f"{prefix}-case", seed=11, mode="legacy",
                                           candidate_ids=self.ids)["game_id"]
         self.store = Store()
         self.addCleanup(self.store.close)

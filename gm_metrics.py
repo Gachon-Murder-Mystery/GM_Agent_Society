@@ -3,11 +3,15 @@
 The GM submits these with evidence (request R9); the engine adds the technical-failure
 flag it alone knows. The GM does no fairness monitoring (v1.3 C3).
 """
+import json
+from pathlib import Path
 from statistics import mean, pstdev
 
-WEIGHTS = {"completion": 0.35, "balance": 0.25, "exploration": 0.20, "record": 0.20}
-SUCCESS_THRESHOLD = 0.7
-LEGITIMATE_ENDINGS = {"winner", "all_dead", "deadline"}
+# Single source shared with the engine check (settings.verify_engine).
+_REPORT = json.loads(Path(__file__).with_name("competitive_settings.json").read_text(encoding="utf-8"))["gm_report"]
+WEIGHTS = dict(_REPORT["weights"])
+SUCCESS_THRESHOLD = _REPORT["success_threshold"]
+LEGITIMATE_ENDINGS = set(_REPORT["legitimate_endings"])
 
 
 def completion(ending, gm_stalled=False, recovery_cycles=0, cycles=1):
