@@ -10,6 +10,15 @@ GM은 캐릭터 조합 배분, 이동→탐문·탐색→추리 턴 진행, 상�
 
 2026-10-19 최신 확인: A가 외부 에이전트 전용 [연결 계약 v1](../Game-engine/INTEGRATION_CONTRACT.md)(`/integration/v1/`, `b477cb0`)을 추가했다. GM은 이 API에 맞춘 [`engine_v1.py`](engine_v1.py)로 갱신했다: 엔진이 선발·승계한 GM 자격으로만 동작하고, 활성화·직업·성향·task·대안·선택 이유를 PLAN으로 제출하며, 플레이어 장애 시 재배정과 승계 후 빈 맥락 재구성을 수행한다. 실제 A 엔진 프로세스와 스크립트 플레이어로 정상·플레이어 장애·GM 장애·인간 개입 시나리오를 해결까지 확인했다. B의 최신 2개 반환 `decide()`에 맞춰 어댑터도 고쳤다. 상세와 남은 차단 사항은 [GM_ENGINE_V1_UPDATE_20261019.md](GM_ENGINE_V1_UPDATE_20261019.md). 아래 `demo.py`/`mock_engine.py`는 v1 이전의 오프라인 모의 실행으로 유지한다.
 
+2026-10-26 최신 확인: A가 경쟁형 v1.3 엔진(`919d34d`)을 기본 모드로 올렸다. 설정값은 [`competitive_settings.json`](competitive_settings.json) 하나로 통일했고 GM은 시작할 때 엔진 카탈로그와 대조한다(`settings.verify_engine`). 경쟁형 GM은 [`competitive_gm.py`](competitive_gm.py)다: Role·서브 미션 배정, 엔진이 굴린 주사위 결과 수신, 응답 대기 확인 뒤 진행, 공지 즉시 게시, 종료·성과 보고, 승계 후 엔진 기록만으로 재구성. 협력형 `engine_v1.py`는 `mode=legacy` 회귀용으로 남긴다. 대조 결과·B 인계 계약·남은 작업은 [V13_ALIGNMENT_20261026.md](V13_ALIGNMENT_20261026.md).
+
+3자 통합 실행: A 엔진을 별도 프로세스로 띄우고, 풀 멤버마다 `AgentWorker`(`agent_runtime.py`)가 현재 역할(플레이어 또는 GM)로 실제 HTTP에 붙어 한 판을 공식 종료까지 진행한다. 플레이어 자리는 B 런타임 슬롯이다(`--player 모듈:팩토리`). 기본값은 C 대역 `ScriptedPlayerRuntime`이고 LLM은 쓰지 않는다.
+
+```powershell
+python -B -m gm_coordinator.run_scenario --seed 7 --progress --out run.json
+python -B -m unittest gm_coordinator.test_competitive_gm gm_coordinator.test_agent_runtime -v   # 실제 A 엔진(../Game-engine), LLM 없음
+```
+
 ## 실행
 
 워크스페이스 루트에서 Python 3.10 이상으로 실행한다. 실행과 테스트에는 외부 패키지나 LLM 연결이 필요 없다.
