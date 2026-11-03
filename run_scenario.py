@@ -4,6 +4,7 @@ A: the engine runs as its own process (`Game-engine/app.py`, temporary DB by def
 B: each pool member's player runtime (`--player package.module:factory`; default is
    C's scripted stand-in `ScriptedPlayerRuntime`, no LLM).
 C: the GM is whichever pool member the engine makes GM (`CompetitiveGMWorker`).
+Every pool member is stepped on its own thread; engine requests still go one at a time.
 
     python -m gm_coordinator.run_scenario --seed 7 --progress
     python -m gm_coordinator.run_scenario --player agent_reasoning_v13:factory --out run.json
@@ -22,10 +23,34 @@ from contextlib import contextmanager
 from pathlib import Path
 
 from .agent_runtime import AgentWorker, load_factory
-from .engine_v1 import EngineV1Client
+from .engine_v1 import EngineV1Client, EngineV1Error
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_ENGINE = ROOT.parent / "Game-engine"
+# Each pool member runs on its own thread. Stepping them one after another let a few slow LLM calls add up
+# past the engine's 40 s player/GM lease, turning players into NPCs and failing the GM over.
+STEP_PAUSE = 0.05  # seconds between one member's steps
+POLL_SECONDS = 0.2
+JOIN_SECONDS = 5
+UNSERIALIZED = ("llm/invoke",)  # A's engine-hosted LLM call: held under the lock it would stall every member
+
+
+class SerialClient(EngineV1Client):
+    """Sends one engine request at a time, as the sequential runner did. Thirteen members writing at once
+    exceeded the engine's 10 s SQLite lock wait (HTTP 500 "database is locked"). Only the waiting overlaps."""
+
+    def __init__(self, base_url="http://127.0.0.1:8765", credentials=None, timeout=10, lock=None):
+        super().__init__(base_url, credentials, timeout)
+        self.lock = lock or threading.Lock()
+
+    def bind(self, **credentials):
+        return SerialClient(self.base_url, credentials, self.timeout, self.lock)
+
+    def call(self, route, **data):
+        if route in UNSERIALIZED:
+            return super().call(route, **data)
+        with self.lock:
+            return super().call(route, **data)
 
 
 def git_head(path):
@@ -66,9 +91,30 @@ def engine_process(engine_dir, data):
         proc.stdout.close()
 
 
+def member_loop(agent_id, worker, stop, failures, refusals):
+    """Step one pool member until the run stops, so its slow LLM call never holds up the others or the GM.
+
+    A request the engine refuses (4xx, e.g. an action that arrives after the phase moved on or after the
+    member became an NPC) is that member's outcome, counted in `refusals`; anything else stops the run."""
+    while not stop.is_set():
+        try:
+            worker.step()
+        except EngineV1Error as exc:
+            if isinstance(exc.status, int) and 400 <= exc.status < 500:
+                refusals.append(exc.code)
+            else:
+                failures.put((agent_id, exc))
+                return
+        except Exception as exc:  # noqa: BLE001 - handed to run(), which stops the scenario
+            failures.put((agent_id, exc))
+            return
+        stop.wait(STEP_PAUSE)
+
+
 def run(client, operator_token, seed=7, rules=None, player_factory=None, provenance=None,
         time_limit=3600, progress=False):
     """Bootstrap the pool, create one game and step every pool member until the GM has reported."""
+    client = SerialClient(client.base_url, client.credentials, client.timeout)
     operator = client.bind(operator_token=operator_token)
     pool = operator.call("pool/bootstrap", pool_id="society")
     created = operator.call("games/create", pool_id="society", seed=seed, rules=rules or {},
@@ -77,18 +123,30 @@ def run(client, operator_token, seed=7, rules=None, player_factory=None, provena
     workers = {a["agent_id"]: AgentWorker(client.bind(**operator.call("pool/credentials", agent_id=a["agent_id"])),
                                           player_factory)
                for a in pool["agents"]}
+    stop, failures, refusals = threading.Event(), queue.Queue(), []
+    threads = [threading.Thread(target=member_loop, args=(agent_id, worker, stop, failures, refusals), name=agent_id, daemon=True)
+               for agent_id, worker in workers.items()]
     started, last_cycle = time.monotonic(), None
-    while True:
-        for worker in workers.values():
-            worker.step()
-        state = operator.call("games/observe", game_id=game_id)
-        if state["ended"] and state["gm_report"] is not None:
-            break
-        if progress and state["cycle_id"] != last_cycle and (state["cycle_id"] == 1 or state["cycle_id"] % 10 == 0):
-            print(f"cycle {state['cycle_id']} · active {len(state['active_agents'])}", file=sys.stderr, flush=True)
-        last_cycle = state["cycle_id"]
-        if time.monotonic() - started > time_limit:
-            raise RuntimeError(f"no official ending within {time_limit}s (cycle {state['cycle_id']}, phase {state['phase']})")
+    try:
+        for thread in threads:
+            thread.start()
+        while True:
+            if not failures.empty():
+                agent_id, exc = failures.get()
+                raise RuntimeError(f"pool member {agent_id} stopped: {exc!r}") from exc
+            state = operator.call("games/observe", game_id=game_id)
+            if state["ended"] and state["gm_report"] is not None:
+                break
+            if progress and state["cycle_id"] != last_cycle and (state["cycle_id"] == 1 or state["cycle_id"] % 10 == 0):
+                print(f"cycle {state['cycle_id']} · active {len(state['active_agents'])}", file=sys.stderr, flush=True)
+            last_cycle = state["cycle_id"]
+            if time.monotonic() - started > time_limit:
+                raise RuntimeError(f"no official ending within {time_limit}s (cycle {state['cycle_id']}, phase {state['phase']})")
+            time.sleep(POLL_SECONDS)
+    finally:
+        stop.set()
+        for thread in threads:
+            thread.join(timeout=JOIN_SECONDS)  # a member still waiting on its LLM is left behind (daemon)
     gm_worker = next(w.gm for w in workers.values() if w.gm.gm is not None and w.gm.gm.reported)
     record = gm_worker.gm.report()
     players = [p for w in workers.values() for p in w.runtimes]
@@ -102,6 +160,7 @@ def run(client, operator_token, seed=7, rules=None, player_factory=None, provena
             "scenario": [line["text"] for line in record["scenario"]],
             "player_runtime": sorted({type(p).__name__ for p in players}) or None,
             "player_fallbacks": sum(getattr(p, "fallbacks", 0) for p in players),
+            "engine_refusals": {code: refusals.count(code) for code in sorted(set(refusals))},
             "live_llm": any(getattr(p, "live_llm", False) for p in players),
             "elapsed_seconds": round(time.monotonic() - started, 1)}
 
