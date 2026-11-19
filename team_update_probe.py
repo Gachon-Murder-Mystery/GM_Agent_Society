@@ -1,6 +1,6 @@
 """Offline review of teammate source, without editing it or calling an LLM.
 
-Run from the workspace: python -B -m gm_coordinator.team_update_probe
+Run from the workspace: python -B -m GM_Agent_Society.team_update_probe
 Native entrypoints are checked separately from diagnostic import binding.
 The latter changes dependency resolution only, never teammate method bodies.
 """
@@ -20,7 +20,7 @@ from .team_adapters import load_legacy_module
 
 ROOT = Path(__file__).resolve().parent.parent
 B = ROOT / "Agent_Reasoning"
-TEMP = ROOT / "gm_coordinator" / ".test_tmp" / "team_update_20261008"
+TEMP = ROOT / "GM_Agent_Society" / ".test_tmp" / "team_update_20261008"
 BASELINES = {
     "Game-engine": "dca35b989249bf1fc7e52ca404805b73e0a52648",
     "Agent_Reasoning": "24eeeb1e6154de3d1a9cd3d891f3479112a9d2c1",
@@ -95,7 +95,7 @@ def run():
         "package_import": command(["python", "-B", "-c", "import deploy.agent"], B),
         "flat_import": command(["python", "-B", "-c", "import agent"], B / "deploy"),
         "previous_native_bridge": command(["python", "-B", "-m", "unittest",
-            "gm_coordinator.test_team_adapters.TeamAdapterTests.test_native_B_flow_or_explicit_API_change_block"], ROOT),
+            "GM_Agent_Society.test_team_adapters.TeamAdapterTests.test_native_B_flow_or_explicit_API_change_block"], ROOT),
     }
     report["native_checks"]["previous_native_bridge"]["qualification"] = "Regression check of explicit B API-change blocking, not a successful native B-to-A flow."
     fake = load_legacy_module(B / "deploy" / "fake_engine.py")
@@ -183,7 +183,7 @@ def run():
         }
     finally:
         store.close()
-    output = ROOT / "gm_coordinator" / "examples" / "team_update_current.json"
+    output = ROOT / "GM_Agent_Society" / "examples" / "team_update_current.json"
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"report": str(output), "native_exit_codes": {
         k: v["exit_code"] for k, v in report["native_checks"].items()},

@@ -1,0 +1,2008 @@
+{
+  "scenario": "gm-fault",
+  "seed": 7,
+  "players_target": 2,
+  "reserves": 2,
+  "provenance": "real A engine process + C V1Coordinator + scripted player doubles; no LLM",
+  "ended": true,
+  "resolution": "solved",
+  "solved": true,
+  "cycle_id": 36,
+  "control": {
+    "controller_id": "pool-1",
+    "term": 2
+  },
+  "failovers": 1,
+  "metrics": {
+    "completed_actions": 214,
+    "effective_actions": 49,
+    "pending_questions": 0,
+    "question_response_rate": null,
+    "refused_questions": 0,
+    "timed_out_questions": 0,
+    "shared_clues": 25,
+    "completed_tasks": 33,
+    "task_completion_rate": 1.0,
+    "gm_failovers": 1,
+    "duration": 78.697683095932
+  },
+  "gm_status_counts": {
+    "planned": 2,
+    "advanced": 107,
+    "fenced": 1,
+    "ended": 1
+  },
+  "injected": [
+    {
+      "operation": "FAIL_GM",
+      "term": 1,
+      "cycle_id": 3
+    }
+  ],
+  "trace": [
+    {
+      "round": 8,
+      "cycle_id": 3,
+      "agent_id": "pool-3",
+      "gm_status": "fenced"
+    }
+  ],
+  "plans_recorded_by_engine": 37,
+  "engine_plans": [
+    {
+      "command_id": "92c208f7-64a0-4444-82d8-e323b56dfeac:plan:0",
+      "controller_id": "pool-3",
+      "term": 1,
+      "map_version": 1,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=8, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=8, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "setup: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 2건, 활성화 ['pool-1', 'pool-2'] (풀 역량 순)",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "92c208f7-64a0-4444-82d8-e323b56dfeac:plan:1",
+      "controller_id": "pool-3",
+      "term": 1,
+      "map_version": 2,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=8, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=8, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "92c208f7-64a0-4444-82d8-e323b56dfeac:plan:2",
+      "controller_id": "pool-3",
+      "term": 1,
+      "map_version": 3,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=8, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=8, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:4",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 5,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=8, active=1, stalled=True, score=0.50"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=8, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "reassign_fault: parallel_explore 선택 (점수 0.50); 활성 1명, 남은 조사 공간 8곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:5",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 6,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=8, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=8, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "replace_fault: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 1건, 활성화 ['pool-4'] (풀 역량 순)",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:6",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 7,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=8, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=8, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:7",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 8,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=8, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=8, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:8",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 9,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=7, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=7, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 7곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:9",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 10,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=6, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=6, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:10",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 11,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=6, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=6, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:11",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 12,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=6, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=6, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:12",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 13,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=6, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=6, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:13",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 14,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=6, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=6, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:14",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 15,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=6, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=6, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:15",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 16,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=6, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=6, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:16",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 17,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=5, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=5, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:17",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 18,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=5, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=5, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:18",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 19,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=5, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=5, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:19",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 20,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=5, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=5, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:20",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 21,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=5, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=5, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:21",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 22,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=5, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=5, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:22",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 23,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=5, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=5, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:23",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 24,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=4, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=4, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 4곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:24",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 25,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=4, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=4, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 4곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:25",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 26,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=4, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=4, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 4곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:26",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 27,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=3, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=3, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:27",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 28,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=3, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=3, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:28",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 29,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=3, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=3, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:29",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 30,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=3, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=3, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:30",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 31,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=3, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=3, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:31",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 32,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=3, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=3, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:32",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 33,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=2, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=2, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 2곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:33",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 34,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=2, active=2, stalled=False, score=2.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=2, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 2곳, 작업 변경 1건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:34",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 35,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=2, active=2, stalled=True, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=2, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 2곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:35",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 36,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=1, active=2, stalled=False, score=1.00"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=False, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=1, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 1곳, 작업 변경 2건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:36",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 37,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=1, active=2, stalled=True, score=0.50"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=1, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 0.50); 활성 2명, 남은 조사 공간 1곳, 작업 변경 0건",
+      "evidence_ids": []
+    },
+    {
+      "command_id": "99ee15d4-cbf0-4e34-a246-7bfce43245e3:plan:37",
+      "controller_id": "pool-1",
+      "term": 2,
+      "map_version": 38,
+      "alternatives": [
+        {
+          "id": "parallel_explore",
+          "summary": "미탐색 공간을 플레이어별로 나눠 병렬 조사",
+          "reason": "open_rooms=1, active=2, stalled=True, score=0.50"
+        },
+        {
+          "id": "exchange_questions",
+          "summary": "상대가 가진 미보유 단서를 같은 공간 질문으로 요청",
+          "reason": "complementary_clues=0, stalled=True, score=0.00"
+        },
+        {
+          "id": "deduce_only",
+          "summary": "새 작업 없이 보유·공개 정보로 추리",
+          "reason": "open_rooms=1, score=0.10"
+        }
+      ],
+      "selected_alternative": "parallel_explore",
+      "reason": "cycle: parallel_explore 선택 (점수 0.50); 활성 2명, 남은 조사 공간 1곳, 작업 변경 0건",
+      "evidence_ids": []
+    }
+  ],
+  "assignments": [
+    {
+      "agent_id": "pool-3",
+      "role": "gm",
+      "term": 1,
+      "status": "retired",
+      "personality": null
+    },
+    {
+      "agent_id": "pool-1",
+      "role": "player",
+      "term": null,
+      "status": "npc",
+      "personality": "cooperative"
+    },
+    {
+      "agent_id": "pool-2",
+      "role": "player",
+      "term": null,
+      "status": "completed",
+      "personality": "cautious"
+    },
+    {
+      "agent_id": "pool-1",
+      "role": "gm",
+      "term": 2,
+      "status": "completed",
+      "personality": null
+    },
+    {
+      "agent_id": "pool-4",
+      "role": "player",
+      "term": null,
+      "status": "completed",
+      "personality": "cooperative"
+    }
+  ],
+  "gm_report": {
+    "game_id": "v1-gm-fault-7",
+    "control": {
+      "controller_id": "pool-1",
+      "term": 2
+    },
+    "status": "ended",
+    "cycle_id": 36,
+    "phase": "deduction",
+    "map_version": 38,
+    "metrics": {
+      "completed_actions": 214,
+      "effective_actions": 49,
+      "pending_questions": 0,
+      "question_response_rate": null,
+      "refused_questions": 0,
+      "timed_out_questions": 0,
+      "shared_clues": 25,
+      "completed_tasks": 33,
+      "task_completion_rate": 1.0,
+      "gm_failovers": 1,
+      "duration": 78.697683095932
+    },
+    "decisions": [
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 5,
+        "cycle_id": 3,
+        "phase": "interaction",
+        "phase_epoch": 8,
+        "trigger": "reassign_fault",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 0.5,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "reassign_fault: parallel_explore 선택 (점수 0.50); 활성 1명, 남은 조사 공간 8곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c2-pool-1-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 1
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 6,
+        "cycle_id": 4,
+        "phase": "movement",
+        "phase_epoch": 10,
+        "trigger": "replace_fault",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "replace_fault: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 1건, 활성화 ['pool-4'] (풀 역량 순)",
+        "activated": [
+          "pool-4"
+        ],
+        "task_changes": [
+          {
+            "task_id": "c4-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 0
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 7,
+        "cycle_id": 5,
+        "phase": "movement",
+        "phase_epoch": 13,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c5-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 0
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 8,
+        "cycle_id": 6,
+        "phase": "movement",
+        "phase_epoch": 16,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 8곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c6-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 0
+          },
+          {
+            "task_id": "c6-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 1
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 9,
+        "cycle_id": 7,
+        "phase": "movement",
+        "phase_epoch": 19,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 7곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c7-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 1
+          },
+          {
+            "task_id": "c6-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 2
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 10,
+        "cycle_id": 8,
+        "phase": "movement",
+        "phase_epoch": 22,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c8-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 2
+          },
+          {
+            "task_id": "c6-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 3
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 11,
+        "cycle_id": 9,
+        "phase": "movement",
+        "phase_epoch": 25,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 12,
+        "cycle_id": 10,
+        "phase": "movement",
+        "phase_epoch": 28,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c10-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 2
+          },
+          {
+            "task_id": "c10-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 3
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 13,
+        "cycle_id": 11,
+        "phase": "movement",
+        "phase_epoch": 31,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c11-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 3
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 14,
+        "cycle_id": 12,
+        "phase": "movement",
+        "phase_epoch": 34,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c12-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 2
+          },
+          {
+            "task_id": "c12-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 3
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 15,
+        "cycle_id": 13,
+        "phase": "movement",
+        "phase_epoch": 37,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 16,
+        "cycle_id": 14,
+        "phase": "movement",
+        "phase_epoch": 40,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 6곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c14-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 2
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 17,
+        "cycle_id": 15,
+        "phase": "movement",
+        "phase_epoch": 43,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c15-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 4
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 18,
+        "cycle_id": 16,
+        "phase": "movement",
+        "phase_epoch": 46,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c16-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 4
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 19,
+        "cycle_id": 17,
+        "phase": "movement",
+        "phase_epoch": 49,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c14-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 2
+          },
+          {
+            "task_id": "c17-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 4
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 20,
+        "cycle_id": 18,
+        "phase": "movement",
+        "phase_epoch": 52,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 21,
+        "cycle_id": 19,
+        "phase": "movement",
+        "phase_epoch": 55,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c19-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 2
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 22,
+        "cycle_id": 20,
+        "phase": "movement",
+        "phase_epoch": 58,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c17-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 4
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 23,
+        "cycle_id": 21,
+        "phase": "movement",
+        "phase_epoch": 61,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 5곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c21-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 4
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 24,
+        "cycle_id": 22,
+        "phase": "movement",
+        "phase_epoch": 64,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 4곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c22-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 4
+          },
+          {
+            "task_id": "c21-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 5
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 25,
+        "cycle_id": 23,
+        "phase": "movement",
+        "phase_epoch": 67,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 4곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 26,
+        "cycle_id": 24,
+        "phase": "movement",
+        "phase_epoch": 70,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 4곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 27,
+        "cycle_id": 25,
+        "phase": "movement",
+        "phase_epoch": 73,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c25-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 5
+          },
+          {
+            "task_id": "c25-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 6
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 28,
+        "cycle_id": 26,
+        "phase": "movement",
+        "phase_epoch": 76,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 29,
+        "cycle_id": 27,
+        "phase": "movement",
+        "phase_epoch": 79,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c27-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 5
+          },
+          {
+            "task_id": "c27-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 6
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 30,
+        "cycle_id": 28,
+        "phase": "movement",
+        "phase_epoch": 82,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c28-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 5
+          },
+          {
+            "task_id": "c28-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 6
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 31,
+        "cycle_id": 29,
+        "phase": "movement",
+        "phase_epoch": 85,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c29-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 6
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 32,
+        "cycle_id": 30,
+        "phase": "movement",
+        "phase_epoch": 88,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 3곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 33,
+        "cycle_id": 31,
+        "phase": "movement",
+        "phase_epoch": 91,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 2곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c31-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 6
+          },
+          {
+            "task_id": "c29-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 7
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 34,
+        "cycle_id": 32,
+        "phase": "movement",
+        "phase_epoch": 94,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 2.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 2.00); 활성 2명, 남은 조사 공간 2곳, 작업 변경 1건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c32-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 7
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 35,
+        "cycle_id": 33,
+        "phase": "movement",
+        "phase_epoch": 97,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 2곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 36,
+        "cycle_id": 34,
+        "phase": "movement",
+        "phase_epoch": 100,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 1.0,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 1.00); 활성 2명, 남은 조사 공간 1곳, 작업 변경 2건",
+        "activated": [],
+        "task_changes": [
+          {
+            "task_id": "c34-pool-2-explore",
+            "agent_id": "pool-2",
+            "kind": "explore",
+            "room": 7
+          },
+          {
+            "task_id": "c34-pool-4-explore",
+            "agent_id": "pool-4",
+            "kind": "explore",
+            "room": 7
+          }
+        ]
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 37,
+        "cycle_id": 35,
+        "phase": "movement",
+        "phase_epoch": 103,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 0.5,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 0.50); 활성 2명, 남은 조사 공간 1곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      },
+      {
+        "controller_id": "pool-1",
+        "term": 2,
+        "map_version": 38,
+        "cycle_id": 36,
+        "phase": "movement",
+        "phase_epoch": 106,
+        "trigger": "cycle",
+        "selected_alternative": "parallel_explore",
+        "scores": {
+          "parallel_explore": 0.5,
+          "exchange_questions": 0.0,
+          "deduce_only": 0.1
+        },
+        "reason": "cycle: parallel_explore 선택 (점수 0.50); 활성 2명, 남은 조사 공간 1곳, 작업 변경 0건",
+        "activated": [],
+        "task_changes": []
+      }
+    ],
+    "faults": [
+      {
+        "event_id": "v1-gm-fault-7:event:31",
+        "agent_id": "pool-1",
+        "reason": "promoted_to_gm"
+      }
+    ],
+    "successions": [
+      {
+        "event_id": "v1-gm-fault-7:event:30",
+        "type": "gm_retired",
+        "controller_id": "pool-3",
+        "term": 1,
+        "reason": "operator_injected_failure"
+      },
+      {
+        "event_id": "v1-gm-fault-7:event:32",
+        "type": "gm_succeeded",
+        "controller_id": "pool-1",
+        "term": 2,
+        "mode": "exploration"
+      }
+    ],
+    "human_requests": [],
+    "rooms": {
+      "0": {
+        "attempts": 6,
+        "successes": 4,
+        "new_information": 3,
+        "exhausted": true
+      },
+      "1": {
+        "attempts": 7,
+        "successes": 4,
+        "new_information": 3,
+        "exhausted": true
+      },
+      "2": {
+        "attempts": 15,
+        "successes": 5,
+        "new_information": 4,
+        "exhausted": true
+      },
+      "3": {
+        "attempts": 7,
+        "successes": 4,
+        "new_information": 3,
+        "exhausted": true
+      },
+      "4": {
+        "attempts": 10,
+        "successes": 4,
+        "new_information": 3,
+        "exhausted": true
+      },
+      "5": {
+        "attempts": 9,
+        "successes": 4,
+        "new_information": 3,
+        "exhausted": true
+      },
+      "6": {
+        "attempts": 9,
+        "successes": 4,
+        "new_information": 3,
+        "exhausted": true
+      },
+      "7": {
+        "attempts": 9,
+        "successes": 4,
+        "new_information": 3,
+        "exhausted": true
+      }
+    },
+    "refusals": {}
+  },
+  "current_gm_decisions": 34
+}

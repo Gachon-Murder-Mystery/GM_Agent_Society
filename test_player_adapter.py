@@ -122,6 +122,34 @@ class PlayerAdapterTests(unittest.TestCase):
         self.assertEqual(engine.gm_snapshot("g")["spent"], before)
         self.assertIn("p1", before)
 
+    def test_current_B_two_value_decide_and_target_id(self):
+        engine, gm, player, adapter = self.make()
+        player.choice = ("stay", {})
+        first = adapter.choose_action(*self.inputs(engine, gm))
+        self.assertEqual(adapter.disclosure_proposals[first.action_id], [])
+        engine.submit_action(first)
+        other = ReasoningPlayerAdapter(PlayerEndpoint("p2"))
+        engine.submit_action(other.choose_action(gm.phase_notices()["p2"], engine.agent_snapshot("g", "p2")))
+        gm.tick()
+        player.choice = ("question", {"target_id": "p2", "approach": "compassion"})
+        request = adapter.choose_action(*self.inputs(engine, gm))
+        self.assertEqual(request.payload, {"target_id": "p2", "approach": "compassion"})
+        for bad in (("question", {"target": "p2", "target_id": "p2"}), ("stay",), ["stay", {}]):
+            fresh = ReasoningPlayerAdapter(PlayerEndpoint("p1"))
+            fresh.agent.choice = bad
+            with self.assertRaises(ContractError):
+                fresh.choose_action(*self.inputs(engine, gm))
+
+    def test_engine_v1_partial_clue_is_never_an_exclusion(self):
+        engine, gm, player, adapter = self.make()
+        notice, obs = self.inputs(engine, gm)
+        obs["information"] = [{"id": "clue:abc", "category": "weapon", "redacted": True, "text": "가려진 자료"}]
+        adapter.choose_action(notice, obs)
+        item = player.obs["information"][0]
+        self.assertTrue(item["redacted"])
+        self.assertNotIn("excludes", item)
+        self.assertNotIn("excluded_id", item)
+
     def test_event_gap_rolls_back_cursor_until_requery(self):
         engine, gm, _, _ = self.make()
         before = copy.deepcopy(gm.store.read("gm", "g"))

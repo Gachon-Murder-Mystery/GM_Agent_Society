@@ -1,4 +1,4 @@
-"""Offline parallel integration driver. python -m gm_coordinator.demo --help"""
+"""Offline parallel integration driver. python -m GM_Agent_Society.demo --help"""
 import argparse
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed

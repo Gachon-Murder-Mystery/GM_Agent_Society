@@ -8,6 +8,17 @@ GM은 캐릭터 조합 배분, 이동→탐문·탐색→추리 턴 진행, 상�
 
 2026-10-08 최신 확인: A는 변경이 없고 B의 새 커밋 3개를 로컬에 반영했다. B의 `sync/decide/ingest_result`에 대응하는 [GM 어댑터 변경](GM_ADAPTER_UPDATE_20261008.md)을 추가했다. 자발적 공유는 선택 기능으로 분리하고 기본 실행에서는 끈다. 기존 점검 도구는 제거된 `Zen.intent`를 명시적 차단 상태로 보고한다. B 실행 오류와 A 공식 접점 부족으로 전체 연결은 아직 불가능하다. 변경 전 상태는 [업데이트 검토](TEAM_UPDATE_REVIEW_20261008.md)와 [당시 실행 기록](examples/team_update_review_20261008.json)에 보존했다.
 
+2026-10-19 최신 확인: A가 외부 에이전트 전용 [연결 계약 v1](../Game-engine/INTEGRATION_CONTRACT.md)(`/integration/v1/`, `b477cb0`)을 추가했다. GM은 이 API에 맞춘 [`engine_v1.py`](engine_v1.py)로 갱신했다: 엔진이 선발·승계한 GM 자격으로만 동작하고, 활성화·직업·성향·task·대안·선택 이유를 PLAN으로 제출하며, 플레이어 장애 시 재배정과 승계 후 빈 맥락 재구성을 수행한다. 실제 A 엔진 프로세스와 스크립트 플레이어로 정상·플레이어 장애·GM 장애·인간 개입 시나리오를 해결까지 확인했다. B의 최신 2개 반환 `decide()`에 맞춰 어댑터도 고쳤다. 상세와 남은 차단 사항은 [GM_ENGINE_V1_UPDATE_20261019.md](GM_ENGINE_V1_UPDATE_20261019.md). 아래 `demo.py`/`mock_engine.py`는 v1 이전의 오프라인 모의 실행으로 유지한다.
+
+2026-10-26 최신 확인: A가 경쟁형 v1.3 엔진(`919d34d`)을 기본 모드로 올렸다. 설정값은 [`competitive_settings.json`](competitive_settings.json) 하나로 통일했고 GM은 시작할 때 엔진 카탈로그와 대조한다(`settings.verify_engine`). 경쟁형 GM은 [`competitive_gm.py`](competitive_gm.py)다: Role·서브 미션 배정, 엔진이 굴린 주사위 결과 수신, 응답 대기 확인 뒤 진행, 공지 즉시 게시, 종료·성과 보고, 승계 후 엔진 기록만으로 재구성. 협력형 `engine_v1.py`는 `mode=legacy` 회귀용으로 남긴다. 대조 결과·B 인계 계약·남은 작업은 [V13_ALIGNMENT_20261026.md](V13_ALIGNMENT_20261026.md).
+
+3자 통합 실행: A 엔진을 별도 프로세스로 띄우고, 풀 멤버마다 `AgentWorker`(`agent_runtime.py`)가 현재 역할(플레이어 또는 GM)로 실제 HTTP에 붙어 한 판을 공식 종료까지 진행한다. 플레이어 자리는 B 런타임 슬롯이다(`--player 모듈:팩토리`). 기본값은 C 대역 `ScriptedPlayerRuntime`이고 LLM은 쓰지 않는다.
+
+```powershell
+python -B -m gm_coordinator.run_scenario --seed 7 --progress --out run.json
+python -B -m unittest gm_coordinator.test_competitive_gm gm_coordinator.test_agent_runtime -v   # 실제 A 엔진(../Game-engine), LLM 없음
+```
+
 ## 실행
 
 워크스페이스 루트에서 Python 3.10 이상으로 실행한다. 실행과 테스트에는 외부 패키지나 LLM 연결이 필요 없다.
@@ -22,6 +33,14 @@ python -m unittest gm_coordinator.test_coordinator -v
 
 `--agents`는 양의 정수이며 인원수가 고정되지 않는다. `--scenario`는 `normal`, `player-fault`, `gm-fault`, `all-fault`, `all-dead`, `death`를 지원한다. 자발적 공유는 기본적으로 꺼져 있으며 `--share`로 켠다. 기존 `--withhold`도 공유를 끈 상태로 실행한다. `--corpse-decay 0`은 임시 시체 정보 감쇠 규칙을 끈다.
 
+실제 A 엔진(v1)과의 실행은 `Game-engine`이 같은 상위 폴더에 있어야 하며 드라이버가 임시 DB로 엔진을 띄운다.
+
+```powershell
+python -m gm_coordinator.v1_demo --scenario normal --out gm_coordinator/examples/v1_normal.json
+python -m gm_coordinator.v1_demo --scenario gm-fault
+python -m unittest gm_coordinator.test_engine_v1 -v
+```
+
 ```powershell
 python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario normal --agents 3
 ```
@@ -32,6 +51,23 @@ python -m gm_coordinator.demo --db gm_coordinator/data/demo.sqlite3 --scenario n
 
 | 파일 | 역할 |
 |---|---|
+| `engine_v1.py` | A `/integration/v1/` HTTP 클라이언트, v1 GM 정책 `V1Coordinator`, 승계 감지 `GMWorker` |
+| `v1_demo.py` / `test_engine_v1.py` | 실제 A 엔진 프로세스 + 스크립트 플레이어 시나리오 / 자동 검증 |
+| `GM_ENGINE_V1_UPDATE_20261019.md` | v1 대응 내용·검증 결과·남은 차단 사항 |
+| `GAME_SPEC_v1.3.md` | **확정 기획서 v1.3 (개발 기준 문서).** 공정성 감시 제외, GM 정책 기본값(C6)·대역 플레이어 기본값(D3) 문서화. `build_spec_docx.py`로 DOCX 생성 |
+| `GAME_SPEC_v1.2.md` | 기획서 v1.2 (GM 담당 결정: 풀 구성·중간 참가 없음·Role 배정·인원·간접 단서 검사 주체·LLM) |
+| `GAME_SPEC_v1.1.md` | 기획서 v1.1 (Role, 고정 MBTI, GM 유임, 서브 미션, 간접 단서). 부속: `SUBMISSION_INDIRECT_CLUE_v1.0.md` |
+| `GM_TASK_STATUS_20261019.md` | GM 담당 작업 현황 (완료 / 선결 작업 대기) |
+| `role_policy.py`, `mission_policy.py`, `gm_metrics.py` | v1.3 Role 배정, 서브 미션 선택·지정, 성과 지표(C4). 기본값은 기획서 C6. 순수 함수 |
+| `competitive_player.py` | 경쟁형·무작위 플레이어 대역 (LLM 없음, 기본값은 기획서 D3). 엔진 형식은 A-9 전까지 가정 |
+| `build_v12_data.py` → `v12_data.json` | 기획서 A1·설계서 2절에서 캐릭터 12명·서브 미션 58종 추출 |
+| `test_v12_policy.py` | 위 모듈 단위 테스트 (엔진·LLM 없음) |
+| `GM_ENGINE_REQUEST_20261019.md` | GM → 엔진 인터페이스 요청 R1~R10 (v1.2 대응) |
+| `GAME_SPEC_v1.0.md` | 기획서 v1.0 (이전 판). 공통 + A·B·C 영역별 확인 사항, 선결 항목 링크. `build_spec_docx.py`로 DOCX 생성 |
+| `PLAN_CURRENT_20261019.md` | 현재 구현 기반 기획안 (A/B/C 코드에서 실제 동작하는 규칙·구조) |
+| `PLAN_REVISION_20261019.md` | 기획 수정안: 경쟁 게임·캐릭터·관계성·판정 규칙과 결정해야 할 사항(Q1~Q20) |
+| `CHARACTER_SHEETS_20261019.md` | 캐릭터 12명 시트 초안: 스테이터스·스킬·MBTI 쓰임·판정 기준선 |
+| `REMAINING_WORK_20261019.md` | 게임 완성까지 남은 A/B/C·공동 기능과 진행 순서 |
 | `contracts.py` | 교체 가능한 EnginePort / PlayerPort, 행동 요청, GM 제어 식별자 |
 | `player_adapter.py` | B sync/decide/ingest_result와 GM 입력/결과 형식의 연결 경계 |
 | `GM_ADAPTER_UPDATE_20261008.md` | 새 어댑터·선택 공유·이벤트 누락 처리와 검증 범위 |

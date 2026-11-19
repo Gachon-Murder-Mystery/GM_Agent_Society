@@ -20,6 +20,12 @@ def information_for_b(items):
     for item in items:
         if not isinstance(item, dict) or item.get("category") not in POOLS:
             raise ContractError("expected engine-confirmed exclusion information")
+        if item.get("redacted") is True and isinstance(item.get("id"), str) and "excluded_id" not in item:
+            # Engine v1 partial disclosure: never an exclusion basis, so no excludes key.
+            projected.append({"id": item["id"], "category": item["category"], "redacted": True,
+                              "text": copy.deepcopy(item.get("text", "")),
+                              "kind": "location" if item["category"] == "place" else item["category"]})
+            continue
         if not isinstance(item.get("id"), str) or "excluded_id" not in item or "text" not in item:
             raise ContractError("incomplete exclusion information")
         info = {key: copy.deepcopy(item[key]) for key in ("id", "category", "excluded_id", "text")}
@@ -109,16 +115,21 @@ class ReasoningPlayerAdapter:
         self.held_ids = {item["id"] for item in obs["information"]}
         try:
             self.agent.sync(notice, obs)
-            action, payload, disclose = self.agent.decide(notice, obs)
+            decision = self.agent.decide(notice, obs)
         except (AttributeError, TypeError, ValueError) as exc:
             raise IntegrationUnavailable(f"B sync/decide failed: {type(exc).__name__}: {exc}") from exc
+        # B d06c650+ returns (action, payload); the earlier 3-value form adds a disclosure proposal.
+        if not isinstance(decision, tuple) or len(decision) not in (2, 3):
+            raise ContractError("B decide must return (action, payload[, disclosure])")
+        action, payload, disclose = decision if len(decision) == 3 else (*decision, [])
         if action not in notice["allowed_actions"] or not isinstance(payload, dict):
             raise ContractError("B returned an unsupported action or payload")
         payload = copy.deepcopy(payload)
         if action == "question":
-            if "target" not in payload or "target_id" in payload:
+            if ("target" in payload) == ("target_id" in payload):
                 raise ContractError("B question must provide one target field")
-            payload["target_id"] = payload.pop("target")
+            if "target" in payload:
+                payload["target_id"] = payload.pop("target")
         if action == "move" and "room" not in payload:
             raise ContractError("B move has no destination; B must choose a valid fallback")
         if not isinstance(disclose, list):
